@@ -37,18 +37,28 @@ public class Main {
         Multiplication m1 = new Multiplication();
         // calling object method
         m1.mult(e1);
+        m1.mult(7);
         m1.mult(e2);
         printNotation(m1);
 
         Multiplication m2 = new Multiplication(e1);
         m2.mult(e3);
         m2.mult(e4);
+        m2.mult(m1);
         m2.mult(e5);
         printNotation(m2);
 
         Summation s1 = new Summation(m1);
         s1.add(m2);
         printNotation(s1);
+
+        Summation s2 = m2._add(e3);
+        s2.add(s1);
+        printNotation(s2);
+
+        Summation s3 = e4._add(e3);
+        s3.add(e5);
+        printNotation(s3);
     }
 
     public static void errorCatching(){

@@ -23,8 +23,17 @@ public class Summation implements Notation {
         elements.add(element);
     }
 
+    public void add(Summation summation){
+        elements.addAll(summation.getElements());
+    }
     public void add(Multiplication element) {
         elements.add(element);
+    }
+    public void add(Exponential exponential) {
+        this.add(new Multiplication(exponential));
+    }
+    public void add(Integer integer) {
+        this.add(new Exponential(integer));
     }
 
     public double result() {

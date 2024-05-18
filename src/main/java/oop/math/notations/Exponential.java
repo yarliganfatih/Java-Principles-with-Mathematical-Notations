@@ -47,21 +47,43 @@ public class Exponential implements Notation {
         this.setExponent(new Rational(power, root));
     }
     
+    public Summation _add(Summation summation){
+        Summation _summation = new Summation(new Multiplication(this));
+        _summation.add(summation);
+        return _summation;
+    }
     public Summation _add(Multiplication multiplication){
         Summation _summation = new Summation(new Multiplication(this));
         _summation.add(multiplication);
         return _summation;
     }
+    public Summation _add(Exponential exponential){
+        return this._add(new Multiplication(exponential));
+    }
+    public Summation _add(Integer integer){
+        return this._add(new Exponential(integer));
+    }
 
+    public Multiplication _mult(Multiplication multiplication){
+        Multiplication _multiplication = new Multiplication(this);
+        _multiplication.mult(multiplication);
+        return _multiplication;
+    }
     public Multiplication _mult(Exponential exponential){
         Multiplication _multiplication = new Multiplication(this);
         _multiplication.mult(exponential);
         return _multiplication;
     }
+    public Multiplication _mult(Integer integer){
+        return this._mult((new Exponential(integer)));
+    }
 
     public void pow(Rational rational){
         rational.mult(this.getExponent());
         this.setExponent(rational);
+    }
+    public void pow(Integer integer){
+        this.exponent.mult(integer);
     }
 
     public double result() {
@@ -115,6 +137,9 @@ public class Exponential implements Notation {
         public void mult(Rational rational){
             this.setNumerator(this.getNumerator() * rational.getNumerator());
             this.setDenominator(this.getDenominator() * rational.getDenominator());
+        }
+        public void mult(Integer integer){
+            this.setNumerator(this.getNumerator() * integer);
         }
     
         public double result() {
