@@ -1,6 +1,8 @@
 package src.main.java.oop.math.notations;
 
-public class Exponential {
+import src.main.java.oop.math.interfaces.Notation;
+
+public class Exponential implements Notation {
     Integer base = 1;
     Rational exponent = new Rational(1);
 
@@ -67,7 +69,7 @@ public class Exponential {
         return out;
     }
 
-    public static class Rational {
+    public static class Rational implements Notation {
         Integer numerator = 0;
         Integer denominator = 1;
     

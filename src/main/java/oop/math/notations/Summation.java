@@ -3,7 +3,9 @@ package src.main.java.oop.math.notations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Summation {
+import src.main.java.oop.math.interfaces.Notation;
+
+public class Summation implements Notation {
     List<Multiplication> elements = new ArrayList<>();
 
     public Summation() {

@@ -3,7 +3,9 @@ package src.main.java.oop.math.notations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Multiplication {
+import src.main.java.oop.math.interfaces.Notation;
+
+public class Multiplication implements Notation {
     List<Exponential> elements = new ArrayList<>();
 
     public Multiplication() {
