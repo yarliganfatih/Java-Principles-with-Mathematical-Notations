@@ -69,7 +69,7 @@ public class Main {
         try {
             Exponential e2 = new Exponential(0, 2);
             printNotation(e2);
-            e2.pow(new Exponential.Rational(-1)); // SHOULD BE NOT ALLOWED
+            e2.pow(new Exponential.Rational(-1)); // NOT ALLOWED
             printNotation(e2);
         } catch (Exception e) {
             System.err.println(e);
@@ -79,7 +79,7 @@ public class Main {
             Exponential e2 = new Exponential(3, 1);
             printNotation(e2);
             // If attribute's access modifier is public then we can assign
-            e2.exponent.denominator = 0; // SHOULD BE NOT ALLOWED
+            e2.getExponent().setDenominator(0); // NOT ALLOWED
             printNotation(e2);
         } catch (Exception e) {
             System.err.println(e);

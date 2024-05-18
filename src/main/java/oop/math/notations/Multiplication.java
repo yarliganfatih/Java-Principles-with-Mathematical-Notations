@@ -6,7 +6,14 @@ import java.util.List;
 import src.main.java.oop.math.interfaces.Notation;
 
 public class Multiplication implements Notation {
-    List<Exponential> elements = new ArrayList<>();
+    private List<Exponential> elements = new ArrayList<>();
+
+    public List<Exponential> getElements(){
+        return this.elements;
+    }
+    public void setElements(List<Exponential> elements){
+        this.elements = elements;
+    }
 
     public Multiplication() {
 

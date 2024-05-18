@@ -6,7 +6,14 @@ import java.util.List;
 import src.main.java.oop.math.interfaces.Notation;
 
 public class Summation implements Notation {
-    List<Multiplication> elements = new ArrayList<>();
+    private List<Multiplication> elements = new ArrayList<>();
+
+    public List<Multiplication> getElements(){
+        return this.elements;
+    }
+    public void setElements(List<Multiplication> elements){
+        this.elements = elements;
+    }
 
     public Summation() {
 

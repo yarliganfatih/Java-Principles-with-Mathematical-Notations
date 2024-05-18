@@ -3,38 +3,48 @@ package src.main.java.oop.math.notations;
 import src.main.java.oop.math.interfaces.Notation;
 
 public class Exponential implements Notation {
-    public Integer base = 1;
-    public Rational exponent = new Rational(1);
+    private Integer base = 1;
+    private Rational exponent = new Rational(1);
+
+    public Integer getBase(){
+        return this.base;
+    }
+    public void setBase(Integer base){
+        if (base == 0 && this.getExponent().result() < 0)
+            throw new IllegalArgumentException("Denominator cannot be zero.");
+        this.base = base;
+    }
+
+    public Rational getExponent(){
+        return this.exponent;
+    }
+    public void setExponent(Rational exponent){
+        if (this.getBase() == 0 && exponent.result() < 0)
+            throw new IllegalArgumentException("Denominator cannot be zero.");
+        this.exponent = exponent;
+    }
 
     public Exponential() {
 
     }
 
     public Exponential(Integer base) {
-        this.base = base;
+        this.setBase(base);
     }
 
     public Exponential(Integer base, Rational exponent) {
-        if (base == 0 && exponent.result() < 0)
-            throw new IllegalArgumentException("Denominator cannot be zero.");
-        this.base = base;
-        this.exponent = exponent;
+        this.setBase(base);
+        this.setExponent(exponent);
     }
 
     public Exponential(Integer base, Integer power) {
-        Rational exponent = new Rational(power);
-        if (base == 0 && exponent.result() < 0)
-            throw new IllegalArgumentException("Denominator cannot be zero.");
-        this.base = base;
-        this.exponent = exponent;
+        this.setBase(base);
+        this.setExponent(new Rational(power));
     }
 
     public Exponential(Integer base, Integer power, Integer root) {
-        Rational exponent = new Rational(power, root);
-        if (base == 0 && exponent.result() < 0)
-            throw new IllegalArgumentException("Denominator cannot be zero.");
-        this.base = base;
-        this.exponent = exponent;
+        this.setBase(base);
+        this.setExponent(new Rational(power, root));
     }
     
     public Summation _add(Multiplication multiplication){
@@ -50,56 +60,71 @@ public class Exponential implements Notation {
     }
 
     public void pow(Rational rational){
-        this.exponent.mult(rational);
+        rational.mult(this.getExponent());
+        this.setExponent(rational);
     }
 
     public double result() {
-        return Math.pow((double) this.base, (double) this.exponent.result());
+        return Math.pow((double) this.getBase(), (double) this.exponent.result());
     }
 
     public String toString() {
         String out = "";
-        if (this.exponent.denominator > 2)
-            out += this.exponent.denominator.toString();
-        if (this.exponent.denominator > 1)
+        if (this.getExponent().getDenominator() > 2)
+            out += this.getExponent().getDenominator().toString();
+        if (this.getExponent().getDenominator() > 1)
             out += "√";
-        out += this.base.toString();
-        if (this.exponent.numerator != 1)
-            out += "^" + this.exponent.numerator.toString();
+        out += this.getBase().toString();
+        if (this.getExponent().getNumerator() != 1)
+            out += "^" + this.getExponent().getNumerator().toString();
         return out;
     }
 
     public static class Rational implements Notation {
-        public Integer numerator = 0;
-        public Integer denominator = 1;
+        private Integer numerator = 0;
+        private Integer denominator = 1;
     
-        public Rational() {
+        public Integer getNumerator(){
+            return this.numerator;
         }
-    
-        public Rational(Integer numerator) {
+        public void setNumerator(Integer numerator){
             this.numerator = numerator;
         }
-    
-        public Rational(Integer numerator, Integer denominator) {
-            this.numerator = numerator;
+
+        public Integer getDenominator(){
+            return this.denominator;
+        }
+        public void setDenominator(Integer denominator){
             if (denominator == 0)
                 throw new IllegalArgumentException("Denominator cannot be zero.");
             this.denominator = denominator;
         }
+
+        public Rational() {
+        }
+    
+        public Rational(Integer numerator) {
+            this.setNumerator(numerator);
+        }
+    
+        public Rational(Integer numerator, Integer denominator) {
+            this.setNumerator(numerator);
+            this.setDenominator(denominator);
+        }
         
         public void mult(Rational rational){
-            this.numerator *= rational.numerator;
-            this.denominator *= rational.denominator;
+            this.setNumerator(this.getNumerator() * rational.getNumerator());
+            this.setDenominator(this.getDenominator() * rational.getDenominator());
         }
     
         public double result() {
-            return (double) this.numerator / (double) this.denominator;
+            return (double) this.getNumerator() / (double) this.getDenominator();
         }
         
         public String toString() {
-            if (this.denominator == 1)
-                return this.numerator.toString();
-            return this.numerator.toString() + "/" + this.denominator.toString();
+            if (this.getDenominator() == 1)
+                return this.getNumerator().toString();
+            return this.getNumerator().toString() + "/" + this.getDenominator().toString();
         }
     }
 }
