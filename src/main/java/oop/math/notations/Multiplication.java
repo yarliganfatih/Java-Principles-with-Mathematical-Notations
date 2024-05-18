@@ -24,14 +24,10 @@ public class Multiplication implements Notation {
     }
     
     public Summation _add(Summation summation) {
-        Summation _summation = new Summation(this);
-        _summation.add(summation);
-        return _summation;
+        return new Summation(this).add(summation);
     }
     public Summation _add(Multiplication multiplication) {
-        Summation _summation = new Summation(this);
-        _summation.add(multiplication);
-        return _summation;
+        return new Summation(this).add(multiplication);
     }
     public Summation _add(Exponential exponential) {
         return this._add(new Multiplication(exponential));
@@ -40,14 +36,16 @@ public class Multiplication implements Notation {
         return this._add(new Exponential(integerNumber));
     }
 
-    public void mult(Multiplication multiplication){
+    public Multiplication mult(Multiplication multiplication){
         elements.addAll(multiplication.getElements());
+        return this;
     }
-    public void mult(Exponential element) {
+    public Multiplication mult(Exponential element) {
         elements.add(element);
+        return this;
     }
-    public void mult(Integer integer) {
-        this.mult(new Exponential(integer));
+    public Multiplication mult(Integer integer) {
+        return this.mult(new Exponential(integer));
     }
 
     public double result() {
