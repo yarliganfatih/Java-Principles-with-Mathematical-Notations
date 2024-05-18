@@ -3,8 +3,8 @@ package src.main.java.oop.math.notations;
 import src.main.java.oop.math.interfaces.Notation;
 
 public class Exponential implements Notation {
-    Integer base = 1;
-    Rational exponent = new Rational(1);
+    public Integer base = 1;
+    public Rational exponent = new Rational(1);
 
     public Exponential() {
 
@@ -70,8 +70,8 @@ public class Exponential implements Notation {
     }
 
     public static class Rational implements Notation {
-        Integer numerator = 0;
-        Integer denominator = 1;
+        public Integer numerator = 0;
+        public Integer denominator = 1;
     
         public Rational() {
         }

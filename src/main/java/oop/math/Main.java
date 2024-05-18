@@ -6,6 +6,7 @@ import src.main.java.oop.math.notations.*;
 public class Main {
     public static void main(String[] args) {
         monitorize();
+        errorCatching();
     }
 
     public static void printNotation(Notation n){
@@ -48,5 +49,40 @@ public class Main {
         Summation s1 = new Summation(m1);
         s1.add(m2);
         printNotation(s1);
+    }
+
+    public static void errorCatching(){
+        try {
+            Exponential.Rational r1 = new Exponential.Rational(1, 0); // NOT ALLOWED
+            printNotation(r1);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+        try {
+            Exponential e1 = new Exponential(0, -1); // NOT ALLOWED
+            printNotation(e1);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        
+        try {
+            Exponential e2 = new Exponential(0, 2);
+            printNotation(e2);
+            e2.pow(new Exponential.Rational(-1)); // SHOULD BE NOT ALLOWED
+            printNotation(e2);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+        try {
+            Exponential e2 = new Exponential(3, 1);
+            printNotation(e2);
+            // If attribute's access modifier is public then we can assign
+            e2.exponent.denominator = 0; // SHOULD BE NOT ALLOWED
+            printNotation(e2);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 }
