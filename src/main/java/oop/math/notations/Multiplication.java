@@ -20,7 +20,7 @@ public class Multiplication implements Notation {
     }
 
     public Multiplication(Multiplication other) {
-        this.mult(other);
+        this.setElements(other.getElements());
     }
 
     public Multiplication(Exponential element) {

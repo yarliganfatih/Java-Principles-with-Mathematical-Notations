@@ -30,7 +30,7 @@ public class Exponential implements Notation {
 
     public Exponential(Exponential other) {
         this.setBase(other.getBase());
-        this.setExponent(new Rational(other.getExponent()));
+        this.setExponent(other.getExponent());
     }
 
     public Exponential(Integer base) {

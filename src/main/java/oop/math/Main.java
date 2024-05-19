@@ -31,6 +31,11 @@ public class Main {
         Exponential.Rational r1 = new Exponential.Rational(1, 2);
         printNotation(r1);
 
+        Exponential.Rational r1Clone = new Exponential.Rational(r1);
+        r1Clone.mult(5);
+        printNotation(r1Clone);
+        printNotation(r1); // This source object is not affected, as it's supposed to be
+
         Exponential e5 = new Exponential(9, r1);
         printNotation(e5);
         
@@ -39,7 +44,7 @@ public class Main {
 
         e5Clone.pow(3);
         printNotation(e5Clone);
-        printNotation(e5);
+        printNotation(e5); // TODO Why is source object also affected?
         
         Multiplication m1 = new Multiplication().mult(e1).mult(7).mult(e2);
         printNotation(m1);
@@ -49,7 +54,7 @@ public class Main {
 
         Multiplication m2Clone = m2._mult(2);
         printNotation(m2Clone);
-        printNotation(m2);
+        printNotation(m2); // TODO Why is source object also affected?
 
         Summation s1 = new Summation(m1).add(m2);
         printNotation(s1);
@@ -59,7 +64,7 @@ public class Main {
 
         Summation s2CloneAdded = new Summation(s2).add(7);
         printNotation(s2CloneAdded);
-        printNotation(s2);
+        printNotation(s2); // TODO Why is source object also affected?
 
         printNotation(e4._add(e3).add(e5));
     }

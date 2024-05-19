@@ -20,7 +20,7 @@ public class Summation implements Notation {
     }
 
     public Summation(Summation other){
-        this.add(other);
+        this.setElements(other.getElements());
     }
 
     public Summation(Multiplication element) {
