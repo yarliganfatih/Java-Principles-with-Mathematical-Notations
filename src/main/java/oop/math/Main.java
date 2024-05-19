@@ -34,16 +34,31 @@ public class Main {
         Exponential e5 = new Exponential(9, r1);
         printNotation(e5);
         
+        Exponential e5Clone = new Exponential(e5);
+        printNotation(e5Clone);
+
+        e5Clone.pow(3);
+        printNotation(e5Clone);
+        printNotation(e5);
+        
         Multiplication m1 = new Multiplication().mult(e1).mult(7).mult(e2);
         printNotation(m1);
 
         Multiplication m2 = new Multiplication(e1).mult(e3).mult(e4).mult(m1).mult(e5);
         printNotation(m2);
 
+        Multiplication m2Clone = m2._mult(2);
+        printNotation(m2Clone);
+        printNotation(m2);
+
         Summation s1 = new Summation(m1).add(m2);
         printNotation(s1);
 
         Summation s2 = m2._add(e3).add(s1);
+        printNotation(s2);
+
+        Summation s2CloneAdded = new Summation(s2).add(7);
+        printNotation(s2CloneAdded);
         printNotation(s2);
 
         printNotation(e4._add(e3).add(e5));

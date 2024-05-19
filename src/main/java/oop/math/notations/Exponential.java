@@ -28,6 +28,11 @@ public class Exponential implements Notation {
 
     }
 
+    public Exponential(Exponential other) {
+        this.setBase(other.getBase());
+        this.setExponent(new Rational(other.getExponent()));
+    }
+
     public Exponential(Integer base) {
         this.setBase(base);
     }
@@ -79,6 +84,17 @@ public class Exponential implements Notation {
         return this;
     }
 
+    public Exponential _pow(Rational rational){
+        Exponential clone = new Exponential(this);
+        clone.setExponent(clone.getExponent().mult(rational));
+        return clone;
+    }
+    public Exponential _pow(Integer integer){
+        Exponential clone = new Exponential(this);
+        clone.exponent.mult(integer);
+        return clone;
+    }
+
     public double result() {
         return Math.pow((double) this.getBase(), (double) this.exponent.result());
     }
@@ -116,6 +132,11 @@ public class Exponential implements Notation {
         }
 
         public Rational() {
+        }
+
+        public Rational(Rational other){
+            this.setNumerator(other.getNumerator());
+            this.setDenominator(other.getDenominator());
         }
     
         public Rational(Integer numerator) {

@@ -19,6 +19,10 @@ public class Summation implements Notation {
 
     }
 
+    public Summation(Summation other){
+        this.add(other);
+    }
+
     public Summation(Multiplication element) {
         elements.add(element);
     }
@@ -36,6 +40,19 @@ public class Summation implements Notation {
     }
     public Summation add(Integer integer) {
         return this.add(new Exponential(integer));
+    }
+
+    public Summation _add(Summation summation){
+        return new Summation(this).add(summation);
+    }
+    public Summation _add(Multiplication element) {
+        return new Summation(this).add(element);
+    }
+    public Summation _add(Exponential exponential) {
+        return this._add(new Multiplication(exponential));
+    }
+    public Summation _add(Integer integer) {
+        return this._add(new Exponential(integer));
     }
 
     public double result() {

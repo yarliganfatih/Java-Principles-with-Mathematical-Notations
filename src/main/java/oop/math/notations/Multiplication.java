@@ -19,6 +19,10 @@ public class Multiplication implements Notation {
 
     }
 
+    public Multiplication(Multiplication other) {
+        this.mult(other);
+    }
+
     public Multiplication(Exponential element) {
         elements.add(element);
     }
@@ -46,6 +50,16 @@ public class Multiplication implements Notation {
     }
     public Multiplication mult(Integer integer) {
         return this.mult(new Exponential(integer));
+    }
+
+    public Multiplication _mult(Multiplication multiplication){
+        return new Multiplication(this).mult(multiplication);
+    }
+    public Multiplication _mult(Exponential element) {
+        return new Multiplication(this).mult(element);
+    }
+    public Multiplication _mult(Integer integer) {
+        return this._mult(new Exponential(integer));
     }
 
     public double result() {
