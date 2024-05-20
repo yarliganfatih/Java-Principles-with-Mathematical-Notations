@@ -1,10 +1,9 @@
 package src.main.java.oop.math.notations;
 
 import src.main.java.oop.math.depended_operations.Division;
-import src.main.java.oop.math.depended_operations.Subtraction;
 import src.main.java.oop.math.interfaces.Notation;
 
-public class Exponential extends Subtraction, Division implements Notation {
+public class Exponential extends Division implements Notation {
     private Integer base = 1;
     private Rational exponent = new Rational(1);
 

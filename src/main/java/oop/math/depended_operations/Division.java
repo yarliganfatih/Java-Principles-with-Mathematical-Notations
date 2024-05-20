@@ -3,7 +3,7 @@ package src.main.java.oop.math.depended_operations;
 import src.main.java.oop.math.notations.Exponential;
 import src.main.java.oop.math.notations.Multiplication;
 
-public abstract class Division {
+public abstract class Division extends Subtraction {
     public abstract Multiplication _mult(Multiplication multiplication);
     public abstract Multiplication _mult(Exponential element);
     

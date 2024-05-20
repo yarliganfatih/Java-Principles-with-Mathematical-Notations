@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import src.main.java.oop.math.depended_operations.Division;
-import src.main.java.oop.math.depended_operations.Subtraction;
 import src.main.java.oop.math.interfaces.Notation;
 
-public class Multiplication extends Subtraction, Division implements Notation {
+public class Multiplication extends Division implements Notation {
     private List<Exponential> elements = new ArrayList<>();
 
     public List<Exponential> getElements(){
