@@ -3,10 +3,11 @@ package src.main.java.oop.math.notations;
 import java.util.ArrayList;
 import java.util.List;
 
+import src.main.java.oop.math.depended_operations.Division;
 import src.main.java.oop.math.depended_operations.Subtraction;
 import src.main.java.oop.math.interfaces.Notation;
 
-public class Multiplication extends Subtraction implements Notation {
+public class Multiplication extends Subtraction, Division implements Notation {
     private List<Exponential> elements = new ArrayList<>();
 
     public List<Exponential> getElements(){
@@ -75,24 +76,16 @@ public class Multiplication extends Subtraction implements Notation {
         return this.divi(new Exponential(integer));
     }
 
+    @Override
     public Multiplication _mult(Multiplication multiplication){
         return new Multiplication(this).mult(multiplication);
     }
+    @Override
     public Multiplication _mult(Exponential element) {
         return new Multiplication(this).mult(element);
     }
     public Multiplication _mult(Integer integer) {
         return this._mult(new Exponential(integer));
-    }
-
-    public Multiplication _divi(Multiplication multiplication) {
-        return this._mult(multiplication.reverse());
-    }
-    public Multiplication _divi(Exponential element) {
-        return this._mult(element._reverse());
-    }
-    public Multiplication _divi(Integer integer) {
-        return this._divi(new Exponential(integer));
     }
 
     public double result() {

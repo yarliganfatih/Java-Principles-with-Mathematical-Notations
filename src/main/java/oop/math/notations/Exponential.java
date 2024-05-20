@@ -1,9 +1,10 @@
 package src.main.java.oop.math.notations;
 
+import src.main.java.oop.math.depended_operations.Division;
 import src.main.java.oop.math.depended_operations.Subtraction;
 import src.main.java.oop.math.interfaces.Notation;
 
-public class Exponential extends Subtraction implements Notation {
+public class Exponential extends Subtraction, Division implements Notation {
     private Integer base = 1;
     private Rational exponent = new Rational(1);
 
@@ -76,24 +77,16 @@ public class Exponential extends Subtraction implements Notation {
         return this._add(new Exponential(integer));
     }
 
+    @Override
     public Multiplication _mult(Multiplication multiplication){
         return new Multiplication(this).mult(multiplication);
     }
+    @Override
     public Multiplication _mult(Exponential exponential){
         return new Multiplication(this).mult(exponential);
     }
     public Multiplication _mult(Integer integer){
         return this._mult((new Exponential(integer)));
-    }
-
-    public Multiplication _divi(Multiplication multiplication) {
-        return this._mult(multiplication.reverse());
-    }
-    public Multiplication _divi(Exponential exponential){
-        return this._mult(exponential._reverse());
-    }
-    public Multiplication _divi(Integer integer){
-        return this._divi((new Exponential(integer)));
     }
 
     public Exponential pow(Rational rational){
