@@ -1,8 +1,9 @@
 package src.main.java.oop.math.notations;
 
+import src.main.java.oop.math.depended_operations.Subtraction;
 import src.main.java.oop.math.interfaces.Notation;
 
-public class Exponential implements Notation {
+public class Exponential extends Subtraction implements Notation {
     private Integer base = 1;
     private Rational exponent = new Rational(1);
 
@@ -60,12 +61,14 @@ public class Exponential implements Notation {
         return this.pow(-1);
     }
     
-    public Summation _add(Summation summation){
-        return new Summation(new Multiplication(this)).add(summation);
-    }
-    public Summation _add(Multiplication multiplication){
-        return new Summation(new Multiplication(this)).add(multiplication);
-    }
+    @Override
+        public Summation _add(Summation summation){
+            return new Summation(new Multiplication(this)).add(summation);
+        }
+    @Override
+        public Summation _add(Multiplication multiplication){
+            return new Summation(new Multiplication(this)).add(multiplication);
+        }
     public Summation _add(Exponential exponential){
         return this._add(new Multiplication(exponential));
     }

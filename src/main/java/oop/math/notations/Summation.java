@@ -3,9 +3,10 @@ package src.main.java.oop.math.notations;
 import java.util.ArrayList;
 import java.util.List;
 
+import src.main.java.oop.math.depended_operations.Subtraction;
 import src.main.java.oop.math.interfaces.Notation;
 
-public class Summation implements Notation {
+public class Summation extends Subtraction implements Notation {
     private List<Multiplication> elements = new ArrayList<>();
 
     public List<Multiplication> getElements(){
@@ -62,12 +63,14 @@ public class Summation implements Notation {
         return this.subt(new Exponential(integer));
     }
 
-    public Summation _add(Summation summation){
-        return new Summation(this).add(summation);
-    }
-    public Summation _add(Multiplication element) {
-        return new Summation(this).add(element);
-    }
+    @Override
+        public Summation _add(Summation summation){
+            return new Summation(this).add(summation);
+        }
+    @Override
+        public Summation _add(Multiplication element) {
+            return new Summation(this).add(element);
+        }
     public Summation _add(Exponential exponential) {
         return this._add(new Multiplication(exponential));
     }
