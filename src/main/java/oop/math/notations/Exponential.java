@@ -52,6 +52,14 @@ public class Exponential implements Notation {
         this.setExponent(new Rational(power, root));
     }
     
+    public Exponential reverse(){
+        this.setExponent(this.getExponent()._reverse());
+        return this;
+    }
+    public Exponential _reverse(){
+        return this.pow(-1);
+    }
+    
     public Summation _add(Summation summation){
         return new Summation(new Multiplication(this)).add(summation);
     }
@@ -65,6 +73,19 @@ public class Exponential implements Notation {
         return this._add(new Exponential(integer));
     }
 
+    public Summation _subt(Summation summation) {
+        return this._add(summation.reverse());
+    }
+    public Summation _subt(Multiplication element) {
+        return this._add(element._reverse());
+    }
+    public Summation _subt(Exponential exponential) {
+        return this._subt(new Multiplication(exponential));
+    }
+    public Summation _subt(Integer integer) {
+        return this._subt(new Exponential(integer));
+    }
+
     public Multiplication _mult(Multiplication multiplication){
         return new Multiplication(this).mult(multiplication);
     }
@@ -73,6 +94,16 @@ public class Exponential implements Notation {
     }
     public Multiplication _mult(Integer integer){
         return this._mult((new Exponential(integer)));
+    }
+
+    public Multiplication _divi(Multiplication multiplication) {
+        return this._mult(multiplication.reverse());
+    }
+    public Multiplication _divi(Exponential exponential){
+        return this._mult(exponential._reverse());
+    }
+    public Multiplication _divi(Integer integer){
+        return this._divi((new Exponential(integer)));
     }
 
     public Exponential pow(Rational rational){
@@ -84,6 +115,13 @@ public class Exponential implements Notation {
         return this;
     }
 
+    public Exponential sqrt(Rational rational){
+        return this.pow(rational._reverse());
+    }
+    public Exponential sqrt(Integer integer){
+        return this.sqrt(new Rational(integer));
+    }
+
     public Exponential _pow(Rational rational){
         Exponential clone = new Exponential(this);
         clone.setExponent(clone.getExponent().mult(rational));
@@ -93,6 +131,13 @@ public class Exponential implements Notation {
         Exponential clone = new Exponential(this);
         clone.exponent.mult(integer);
         return clone;
+    }
+
+    public Exponential _sqrt(Rational rational){
+        return this._pow(rational._reverse());
+    }
+    public Exponential _sqrt(Integer integer){
+        return this._sqrt(new Rational(integer));
     }
 
     public double result() {
@@ -146,6 +191,13 @@ public class Exponential implements Notation {
         public Rational(Integer numerator, Integer denominator) {
             this.setNumerator(numerator);
             this.setDenominator(denominator);
+        }
+
+        public Rational _reverse(){
+            Integer inMemory = this.getNumerator();
+            this.setNumerator(this.getDenominator());
+            this.setDenominator(inMemory);
+            return this;
         }
         
         public Rational mult(Rational rational){

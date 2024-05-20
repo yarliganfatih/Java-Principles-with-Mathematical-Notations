@@ -24,7 +24,14 @@ public class Main {
         Exponential e3 = new Exponential(3, 2);
         printNotation(e3);
 
+        e3.reverse();
+        printNotation(e3);
+
         Exponential e4 = new Exponential(4, 1, 2);
+        printNotation(e4);
+
+        Exponential e4Clone = e4._sqrt(3);
+        printNotation(e4Clone);
         printNotation(e4);
         
         // creating inner static class
@@ -44,6 +51,13 @@ public class Main {
         Multiplication m1 = new Multiplication().mult(e1).mult(7).mult(e2);
         printNotation(m1);
 
+        m1.divi(new Exponential(3, 2));
+        printNotation(m1);
+
+        Multiplication m1Clone = m1._divi(5);
+        printNotation(m1Clone);
+        printNotation(m1);
+
         Multiplication m2 = new Multiplication(e1).mult(e3).mult(e4).mult(m1).mult(e5);
         printNotation(m2);
 
@@ -51,7 +65,10 @@ public class Main {
         printNotation(m2Clone);
         printNotation(m2);
 
-        Summation s1 = new Summation(m1).add(m2);
+        Multiplication m3 = e5._divi(4);
+        printNotation(m3);
+
+        Summation s1 = new Summation(m1).add(m2).subt(11);
         printNotation(s1);
 
         Summation s2 = m2._add(e3).add(s1);
@@ -62,6 +79,8 @@ public class Main {
         printNotation(s2);
 
         printNotation(e4._add(e3).add(e5));
+        printNotation(e4._subt(e3).subt(e5));
+        printNotation(e4._subt(s1).subt(e1));
     }
 
     public static void errorCatching(){
