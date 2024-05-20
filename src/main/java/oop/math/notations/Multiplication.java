@@ -39,31 +39,18 @@ public class Multiplication extends Subtraction implements Notation {
     }
     
     @Override
-        public Summation _add(Summation summation) {
-            return new Summation(this).add(summation);
-        }
+    public Summation _add(Summation summation) {
+        return new Summation(this).add(summation);
+    }
     @Override
-        public Summation _add(Multiplication multiplication) {
-            return new Summation(this).add(multiplication);
-        }
+    public Summation _add(Multiplication multiplication) {
+        return new Summation(this).add(multiplication);
+    }
     public Summation _add(Exponential exponential) {
         return this._add(new Multiplication(exponential));
     }
     public Summation _add(Integer integerNumber) {
         return this._add(new Exponential(integerNumber));
-    }
-
-    public Summation _subt(Summation summation) {
-        return this._add(summation.reverse());
-    }
-    public Summation _subt(Multiplication element) {
-        return this._add(element._reverse());
-    }
-    public Summation _subt(Exponential exponential) {
-        return this._subt(new Multiplication(exponential));
-    }
-    public Summation _subt(Integer integer) {
-        return this._subt(new Exponential(integer));
     }
 
     public Multiplication mult(Multiplication multiplication){
