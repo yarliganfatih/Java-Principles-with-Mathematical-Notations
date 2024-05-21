@@ -39,23 +39,16 @@ public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
         return this.mult(-1);
     }
     
-    public Multiplication mult(Multiplication multiplication){
-        elements.addAll(multiplication.getElements());
-        return this;
-    }
-    public Multiplication mult(Exponential element) {
-        elements.add(element);
+    public Multiplication mult(Mult_Layer multiParam){
+        elements.addAll(multiParam.toMultiplication().getElements());
         return this;
     }
     public Multiplication mult(Integer integer) {
         return this.mult(new Exponential(integer));
     }
 
-    public Multiplication divi(Multiplication multiplication) {
-        return this.mult(multiplication.reverse());
-    }
-    public Multiplication divi(Exponential element) {
-        return this.mult(element._reverse());
+    public Multiplication divi(Mult_Layer multiParam) {
+        return this.mult(multiParam.toMultiplication().reverse());
     }
     public Multiplication divi(Integer integer) {
         return this.divi(new Exponential(integer));

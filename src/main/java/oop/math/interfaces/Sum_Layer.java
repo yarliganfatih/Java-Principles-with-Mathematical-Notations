@@ -9,32 +9,20 @@ public interface Sum_Layer {
         if(this instanceof Summation) return (Summation)this;
         if(this instanceof Multiplication) return new Summation((Multiplication)this);
         if(this instanceof Exponential) return new Summation(new Multiplication((Exponential)this));
-        // if(this instanceof Integer) return new Summation(new Multiplication(new Exponential(this)));
+        // if(this instanceof Integer) return new Summation(new Multiplication(new Exponential((Integer)this))); // TODO #3
         return null;
     }
 
-    public default Summation _add(Summation summation){
-        return new Summation().add(this.toSummation()).add(summation);
-    }
-    public default Summation _add(Multiplication multiplication){
-        return new Summation().add(this.toSummation()).add(multiplication);
-    }
-    public default Summation _add(Exponential exponential){
-        return this._add(new Multiplication(exponential));
+    public default Summation _add(Sum_Layer multiParam){
+        return new Summation().add(this.toSummation()).add(multiParam.toSummation());
     }
     public default Summation _add(Integer integer){
         return this._add(new Exponential(integer));
     }
 
 
-    public default Summation _subt(Summation summation) {
-        return this._add(summation.reverse());
-    }
-    public default Summation _subt(Multiplication element) {
-        return this._add(element._reverse());
-    }
-    public default Summation _subt(Exponential exponential) {
-        return this._subt(new Multiplication(exponential));
+    public default Summation _subt(Sum_Layer multiParam) {
+        return this._add(multiParam.toSummation().reverse());
     }
     public default Summation _subt(Integer integer) {
         return this._subt(new Exponential(integer));

@@ -35,29 +35,16 @@ public class Summation implements Notation, Sum_Layer {
         return this;
     }
 
-    public Summation add(Summation summation){
-        elements.addAll(summation.getElements());
+    public Summation add(Sum_Layer multiParam){
+        elements.addAll(multiParam.toSummation().getElements());
         return this;
-    }
-    public Summation add(Multiplication element) {
-        elements.add(element);
-        return this;
-    }
-    public Summation add(Exponential exponential) {
-        return this.add(new Multiplication(exponential));
     }
     public Summation add(Integer integer) {
         return this.add(new Exponential(integer));
     }
 
-    public Summation subt(Summation summation){
-        return this.add(summation.reverse());
-    }
-    public Summation subt(Multiplication element) {
-        return this.add(element._reverse());
-    }
-    public Summation subt(Exponential exponential) {
-        return this.subt(new Multiplication(exponential));
+    public Summation subt(Sum_Layer multiParam){
+        return this.add(multiParam.toSummation().reverse());
     }
     public Summation subt(Integer integer) {
         return this.subt(new Exponential(integer));
