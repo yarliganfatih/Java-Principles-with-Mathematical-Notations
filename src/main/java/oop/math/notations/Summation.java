@@ -3,10 +3,10 @@ package src.main.java.oop.math.notations;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.main.java.oop.math.depended_operations.Subtraction;
 import src.main.java.oop.math.interfaces.Notation;
+import src.main.java.oop.math.interfaces.Sum_Layer;
 
-public class Summation extends Subtraction implements Notation {
+public class Summation implements Notation, Sum_Layer {
     private List<Multiplication> elements = new ArrayList<>();
 
     public List<Multiplication> getElements(){

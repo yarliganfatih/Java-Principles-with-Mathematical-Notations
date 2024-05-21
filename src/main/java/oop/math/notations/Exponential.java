@@ -1,9 +1,10 @@
 package src.main.java.oop.math.notations;
 
-import src.main.java.oop.math.depended_operations.Division;
+import src.main.java.oop.math.interfaces.Mult_Layer;
 import src.main.java.oop.math.interfaces.Notation;
+import src.main.java.oop.math.interfaces.Sum_Layer;
 
-public class Exponential extends Division implements Notation {
+public class Exponential implements Notation, Sum_Layer, Mult_Layer {
     private Integer base = 1;
     private Rational exponent = new Rational(1);
 

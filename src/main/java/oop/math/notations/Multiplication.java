@@ -3,10 +3,11 @@ package src.main.java.oop.math.notations;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.main.java.oop.math.depended_operations.Division;
+import src.main.java.oop.math.interfaces.Mult_Layer;
 import src.main.java.oop.math.interfaces.Notation;
+import src.main.java.oop.math.interfaces.Sum_Layer;
 
-public class Multiplication extends Division implements Notation {
+public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
     private List<Exponential> elements = new ArrayList<>();
 
     public List<Exponential> getElements(){
