@@ -38,21 +38,6 @@ public class Multiplication extends Division implements Notation {
         return this.mult(-1);
     }
     
-    @Override
-    public Summation _add(Summation summation) {
-        return new Summation(this).add(summation);
-    }
-    @Override
-    public Summation _add(Multiplication multiplication) {
-        return new Summation(this).add(multiplication);
-    }
-    public Summation _add(Exponential exponential) {
-        return this._add(new Multiplication(exponential));
-    }
-    public Summation _add(Integer integerNumber) {
-        return this._add(new Exponential(integerNumber));
-    }
-
     public Multiplication mult(Multiplication multiplication){
         elements.addAll(multiplication.getElements());
         return this;
@@ -73,18 +58,6 @@ public class Multiplication extends Division implements Notation {
     }
     public Multiplication divi(Integer integer) {
         return this.divi(new Exponential(integer));
-    }
-
-    @Override
-    public Multiplication _mult(Multiplication multiplication){
-        return new Multiplication(this).mult(multiplication);
-    }
-    @Override
-    public Multiplication _mult(Exponential element) {
-        return new Multiplication(this).mult(element);
-    }
-    public Multiplication _mult(Integer integer) {
-        return this._mult(new Exponential(integer));
     }
 
     public double result() {

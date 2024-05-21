@@ -61,33 +61,6 @@ public class Exponential extends Division implements Notation {
         return this.pow(-1);
     }
     
-    @Override
-    public Summation _add(Summation summation){
-        return new Summation(new Multiplication(this)).add(summation);
-    }
-    @Override
-    public Summation _add(Multiplication multiplication){
-        return new Summation(new Multiplication(this)).add(multiplication);
-    }
-    public Summation _add(Exponential exponential){
-        return this._add(new Multiplication(exponential));
-    }
-    public Summation _add(Integer integer){
-        return this._add(new Exponential(integer));
-    }
-
-    @Override
-    public Multiplication _mult(Multiplication multiplication){
-        return new Multiplication(this).mult(multiplication);
-    }
-    @Override
-    public Multiplication _mult(Exponential exponential){
-        return new Multiplication(this).mult(exponential);
-    }
-    public Multiplication _mult(Integer integer){
-        return this._mult((new Exponential(integer)));
-    }
-
     public Exponential pow(Rational rational){
         this.setExponent(this.getExponent().mult(rational));
         return this;

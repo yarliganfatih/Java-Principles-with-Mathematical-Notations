@@ -63,21 +63,6 @@ public class Summation extends Subtraction implements Notation {
         return this.subt(new Exponential(integer));
     }
 
-    @Override
-    public Summation _add(Summation summation){
-        return new Summation(this).add(summation);
-    }
-    @Override
-    public Summation _add(Multiplication element) {
-        return new Summation(this).add(element);
-    }
-    public Summation _add(Exponential exponential) {
-        return this._add(new Multiplication(exponential));
-    }
-    public Summation _add(Integer integer) {
-        return this._add(new Exponential(integer));
-    }
-
     public double result() {
         double sum = 0;
         for (Multiplication element : this.elements) {
