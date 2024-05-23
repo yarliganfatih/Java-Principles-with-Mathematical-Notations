@@ -29,6 +29,14 @@ public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
         elements.add(element);
     }
     
+    public Multiplication(String expression) {
+        expression = expression.replaceAll("[ ()]", "");
+        String[] parts = expression.split("x");
+        for(String part : parts){
+            elements.add(new Exponential(part));
+        }
+    }
+    
     public Multiplication reverse(){
         for (Exponential element : elements) {
             element._reverse();

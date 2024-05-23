@@ -54,6 +54,28 @@ public class Exponential implements Notation, Sum_Layer, Mult_Layer {
         this.setExponent(new Rational(power, root));
     }
     
+    public Exponential(String expression) {
+        expression = expression.replaceAll("[ ()]", "");
+        
+        Integer _root = this.exponent.getDenominator();
+        Integer _base = this.base;
+        Integer _power = this.exponent.getNumerator();
+
+        String[] parts = expression.split("√");
+        if (parts.length == 2) {
+            _root = !parts[0].isEmpty() ? Integer.parseInt(parts[0]) : 2;
+            parts[0] = parts[1]; // to use below for base
+        }
+        String[] subParts = parts[0].split("\\^");
+        _base = Integer.parseInt(subParts[0]);
+        if (subParts.length == 2) {
+            _power = Integer.parseInt(subParts[1]);
+        }
+
+        this.setBase(_base);
+        this.setExponent(new Rational(_power, _root));
+    }
+    
     public Exponential reverse(){
         this.setExponent(this.getExponent()._reverse());
         return this;

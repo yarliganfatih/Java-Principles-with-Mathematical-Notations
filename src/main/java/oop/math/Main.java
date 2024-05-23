@@ -81,6 +81,30 @@ public class Main {
         printNotation(e4._add(e3).add(e5));
         printNotation(e4._subt(e3).subt(e5));
         printNotation(e4._subt(s1).subt(e1));
+
+        Exponential e6 = new Exponential("√9");
+        printNotation(e6);
+        
+        Exponential e7 = new Exponential("3^-2");
+        printNotation(e7);
+
+        Multiplication m4 = new Multiplication("√9 x 3^-2 x 3√27");
+        printNotation(m4);
+        
+        Multiplication m5 = new Multiplication(e6.toString() + "x" + e7.toString() + " x 3√27");
+        printNotation(m5);
+
+        Summation s3 = new Summation("7 x 2 x 2^2 + 7 x 2 x " + m5.toString());
+        printNotation(s3);
+        
+        Summation s4 = new Summation("7x2x2^2 + √9x4√16x7x2x3^(-2)x3√27");
+        printNotation(s4);
+
+        Summation s5 = new Summation("[(7) x (2) x (2^2)] + [(√9) x (4√16) x (7) x (2) x (3^-2) x (3√27)]");
+        printNotation(s5);
+        
+        Summation s6 = new Summation(s5.add(m4).toString());
+        printNotation(s6);
     }
 
     public static void errorCatching(){
@@ -93,6 +117,13 @@ public class Main {
 
         try {
             Exponential e1 = new Exponential(0, -1); // NOT ALLOWED
+            printNotation(e1);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+        try {
+            Exponential e1 = new Exponential("0^-2"); // NOT ALLOWED
             printNotation(e1);
         } catch (Exception e) {
             System.err.println(e);

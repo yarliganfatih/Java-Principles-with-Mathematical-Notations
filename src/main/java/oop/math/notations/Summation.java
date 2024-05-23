@@ -28,6 +28,14 @@ public class Summation implements Notation, Sum_Layer {
         elements.add(element);
     }
 
+    public Summation(String expression) {
+        expression = expression.replaceAll("[ \\[\\]]", "");
+        String[] parts = expression.split("\\+");
+        for(String part : parts){
+            elements.add(new Multiplication(part));
+        }
+    }
+
     public Summation reverse(){
         for (Multiplication element : elements) {
             element._reverse();
