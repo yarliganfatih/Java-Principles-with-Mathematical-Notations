@@ -8,6 +8,7 @@ import src.main.java.oop.math.interfaces.Notation;
 import src.main.java.oop.math.interfaces.Sum_Layer;
 
 public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
+    public final String symbol = "x"; // can be also *
     private List<Exponential> elements = new ArrayList<>();
 
     public List<Exponential> getElements(){
@@ -31,7 +32,7 @@ public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
     
     public Multiplication(String expression) {
         expression = expression.replaceAll("[ ()]", "");
-        String[] parts = expression.split("x");
+        String[] parts = expression.split(this.symbol);
         for(String part : parts){
             elements.add(new Exponential(part));
         }
@@ -75,6 +76,6 @@ public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
         for (Exponential element : elements) {
             out.add("(" + element.toString() + ")");
         }
-        return String.join(" x ", out);
+        return String.join(" " + this.symbol + " ", out);
     }
 }

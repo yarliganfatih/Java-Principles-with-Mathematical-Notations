@@ -6,6 +6,7 @@ import src.main.java.oop.math.interfaces.Sum_Layer;
 
 public class Exponential implements Notation, Sum_Layer, Mult_Layer {
     private Integer base = 1;
+    public final String symbol = "^";
     private Rational exponent = new Rational(1);
 
     public Integer getBase(){
@@ -66,7 +67,7 @@ public class Exponential implements Notation, Sum_Layer, Mult_Layer {
             _root = !parts[0].isEmpty() ? Integer.parseInt(parts[0]) : 2;
             parts[0] = parts[1]; // to use below for base
         }
-        String[] subParts = parts[0].split("\\^");
+        String[] subParts = parts[0].split("\\" + this.symbol);
         _base = Integer.parseInt(subParts[0]);
         if (subParts.length == 2) {
             _power = Integer.parseInt(subParts[1]);
@@ -130,12 +131,13 @@ public class Exponential implements Notation, Sum_Layer, Mult_Layer {
             out += "√";
         out += this.getBase().toString();
         if (this.getExponent().getNumerator() != 1)
-            out += "^" + this.getExponent().getNumerator().toString();
+            out += this.symbol + this.getExponent().getNumerator().toString();
         return out;
     }
 
     public static class Rational implements Notation {
         private Integer numerator = 0;
+        public final String symbol = "/";
         private Integer denominator = 1;
     
         public Integer getNumerator(){
@@ -195,7 +197,7 @@ public class Exponential implements Notation, Sum_Layer, Mult_Layer {
         public String toString() {
             if (this.getDenominator() == 1)
                 return this.getNumerator().toString();
-            return this.getNumerator().toString() + "/" + this.getDenominator().toString();
+            return this.getNumerator().toString() + this.symbol + this.getDenominator().toString();
         }
     }
 }

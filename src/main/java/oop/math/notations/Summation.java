@@ -7,6 +7,7 @@ import src.main.java.oop.math.interfaces.Notation;
 import src.main.java.oop.math.interfaces.Sum_Layer;
 
 public class Summation implements Notation, Sum_Layer {
+    public final String symbol = "+";
     private List<Multiplication> elements = new ArrayList<>();
 
     public List<Multiplication> getElements(){
@@ -30,7 +31,7 @@ public class Summation implements Notation, Sum_Layer {
 
     public Summation(String expression) {
         expression = expression.replaceAll("[ \\[\\]]", "");
-        String[] parts = expression.split("\\+");
+        String[] parts = expression.split("\\" + this.symbol);
         for(String part : parts){
             elements.add(new Multiplication(part));
         }
@@ -71,6 +72,6 @@ public class Summation implements Notation, Sum_Layer {
         for (Multiplication element : elements) {
             out.add("[" + element.toString() + "]");
         }
-        return String.join(" + ", out);
+        return String.join(" " + this.symbol + " ", out);
     }
 }
