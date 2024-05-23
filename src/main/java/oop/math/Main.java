@@ -10,7 +10,7 @@ public class Main {
     }
 
     public static void printNotation(Notation n){
-        System.out.println(n.toString() + " = " + n.result());
+        System.out.println(n.getClass().getSimpleName() + " : " + n.toString() + " = " + n.result());
     }
 
     public static void monitorize() {
@@ -85,10 +85,18 @@ public class Main {
         Exponential e6 = new Exponential("√9");
         printNotation(e6);
         
-        Exponential e7 = new Exponential("3^-2");
-        printNotation(e7);
+        Notation n1 = Notation.interpret("3^-2");
+        printNotation(n1); // instanceof Exponential
+        // n1.pow(2); => Not Possible
 
-        Multiplication m4 = new Multiplication("√9 x 3^-2 x 3√27");
+        Exponential e7 = (Exponential)n1;
+        printNotation(e7);
+        // e7.pow(2); => Now Possible
+
+        Notation n2 = Notation.interpret("√9 x 3^-2 x 3√27");
+        printNotation(n2); // instanceof Multiplication
+
+        Multiplication m4 = (Multiplication)n2;
         printNotation(m4);
         
         Multiplication m5 = new Multiplication(e6.toString() + "x" + e7.toString() + " x 3√27");
@@ -103,8 +111,8 @@ public class Main {
         Summation s5 = new Summation("[(7) x (2) x (2^2)] + [(√9) x (4√16) x (7) x (2) x (3^-2) x (3√27)]");
         printNotation(s5);
         
-        Summation s6 = new Summation(s5.add(m4).toString());
-        printNotation(s6);
+        Summation s6 = (Summation)Notation.interpret(s5.add(m4).toString());
+        printNotation(s6); // instanceof Summation already
     }
 
     public static void errorCatching(){
