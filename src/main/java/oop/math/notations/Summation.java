@@ -1,10 +1,10 @@
-package src.main.java.oop.math.notations;
+package oop.math.notations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import src.main.java.oop.math.interfaces.Notation;
-import src.main.java.oop.math.interfaces.Sum_Layer;
+import oop.math.interfaces.Notation;
+import oop.math.interfaces.Sum_Layer;
 
 public class Summation implements Notation, Sum_Layer {
     public static final String symbol = "+";

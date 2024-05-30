@@ -1,8 +1,8 @@
-package src.main.java.oop.math.notations;
+package oop.math.notations;
 
-import src.main.java.oop.math.interfaces.Mult_Layer;
-import src.main.java.oop.math.interfaces.Notation;
-import src.main.java.oop.math.interfaces.Sum_Layer;
+import oop.math.interfaces.Mult_Layer;
+import oop.math.interfaces.Notation;
+import oop.math.interfaces.Sum_Layer;
 
 public class Exponential implements Notation, Sum_Layer, Mult_Layer {
     private Integer base = 1;

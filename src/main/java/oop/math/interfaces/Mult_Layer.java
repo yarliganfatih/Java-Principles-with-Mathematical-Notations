@@ -1,7 +1,7 @@
-package src.main.java.oop.math.interfaces;
+package oop.math.interfaces;
 
-import src.main.java.oop.math.notations.Exponential;
-import src.main.java.oop.math.notations.Multiplication;
+import oop.math.notations.Exponential;
+import oop.math.notations.Multiplication;
 
 public interface Mult_Layer {
     public default Multiplication toMultiplication(){

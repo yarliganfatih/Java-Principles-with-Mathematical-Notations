@@ -1,8 +1,8 @@
-package src.main.java.oop.math.interfaces;
+package oop.math.interfaces;
 
-import src.main.java.oop.math.notations.Exponential;
-import src.main.java.oop.math.notations.Multiplication;
-import src.main.java.oop.math.notations.Summation;
+import oop.math.notations.Exponential;
+import oop.math.notations.Multiplication;
+import oop.math.notations.Summation;
 
 public interface Sum_Layer {
     public default Summation toSummation(){

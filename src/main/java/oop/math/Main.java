@@ -1,7 +1,7 @@
-package src.main.java.oop.math;
+package oop.math;
 
-import src.main.java.oop.math.interfaces.Notation;
-import src.main.java.oop.math.notations.*;
+import oop.math.interfaces.Notation;
+import oop.math.notations.*;
 
 public class Main {
     public static void main(String[] args) {
