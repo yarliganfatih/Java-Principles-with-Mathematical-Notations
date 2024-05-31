@@ -2,6 +2,28 @@
 
 This project aims to demonstrate the application of clean coding principles and object-oriented programming (OOP) practices through the implementation of mathematical expressions. The project progresses step by step, focusing on a hierarchy of classes representing mathematical expressions: Exponential, Multiplication, and Summation.
 
+## Getting Started
+1. Clone the repository.
+2. Navigate to the project directory.
+
+### Installation
+To install dependencies and build the project, run:
+```shell
+mvn clean install
+```
+
+### Testing
+To run tests, execute:
+```shell
+mvn test
+```
+
+### Packaging
+To package the project, use:
+```shell
+mvn package
+```
+
 ## Project Objective
 
 The main goal of this project is to showcase the implementation of clean coding techniques and OOP principles in a practical manner. Each commit represents a step towards cleaner and more maintainable code. The project starts with simple mathematical expressions and gradually builds upon them to demonstrate the evolution of the codebase.
