@@ -12,7 +12,7 @@ import oop.math.notations.Summation;
 public class NumberSystem {
     private int sign = +1;
     private List<Integer> digits = new ArrayList<>(List.of(0));
-    private int radix = 10;
+    protected int radix = 0;
 
     public int getSign() {
         return this.sign;
@@ -31,6 +31,8 @@ public class NumberSystem {
         return this.digits;
     }
     public void setDigits(List<Integer> digits) {
+        if (this.radix == 0) // To ensure setRadix is ​​before setDigits
+            throw new IllegalArgumentException("Firstly radix must be assigned.");
         if (digits.size() == 0)
             throw new IllegalArgumentException("Digits cannot be empty.");
         for (int digit : digits) {
@@ -59,17 +61,19 @@ public class NumberSystem {
     }
 
     public NumberSystem() {
+        this.setRadix(10);
     }
     public NumberSystem(int number) { // up to _10
+        this();
         this.setSign(number);
         this.setDigits(this.stringToDigits(Integer.toString(number)));
     }
     public NumberSystem(String numberStr, int radix) { // up to _36
-        this.setRadix(radix); // priority for comparison
+        this.setRadix(radix);
         this.setDigits(this.stringToDigits(numberStr.replaceAll("[ ]", "")));
     }
     public NumberSystem(int sign, List<Integer> digits, int radix) { // up to _∞
-        this.setRadix(radix); // priority for comparison
+        this.setRadix(radix);
         this.setSign(sign);
         this.setDigits(digits);
     }
