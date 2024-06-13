@@ -36,15 +36,6 @@ public class HexadecimalNumberTest {
     }
 
     @Test
-    public void testSetRadix() {
-        HexadecimalNumber ns = new HexadecimalNumber();
-        ns.setRadix(8);
-        assertEquals(16, ns.getRadix());
-        ns.setRadix(1);
-        assertEquals(16, ns.getRadix());
-    }
-
-    @Test
     public void testSetDigits() {
         HexadecimalNumber ns = new HexadecimalNumber("-12");
         ns.setDigits(new ArrayList<>(List.of(1, 2, 3)));

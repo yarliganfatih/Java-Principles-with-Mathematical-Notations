@@ -6,18 +6,11 @@ import oop.math.numbers.NumberSystem;
 
 public class DecimalNumber extends NumberSystem {
 
-    @Override
-    public void setRadix(int radix){
-        this.radix = 10;
-    }
-
     public DecimalNumber() {
-        super();
-        this.setRadix(10);
+        super(10);
     }
     public DecimalNumber(int number) {
-        super(number);
-        this.setRadix(10);
+        super(number, 10);
     }
     public DecimalNumber(String numberStr) {
         super(numberStr, 10);

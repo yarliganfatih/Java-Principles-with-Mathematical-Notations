@@ -7,18 +7,11 @@ import oop.math.numbers.NumberSystem;
 
 public class BinaryNumber extends NumberSystem {
 
-    @Override
-    public void setRadix(int radix){
-        this.radix = 2;
-    }
-
     public BinaryNumber() {
-        super();
-        this.setRadix(2);
+        super(2);
     }
     public BinaryNumber(int number) {
-        super(number);
-        this.setRadix(2);
+        super(number, 2);
     }
     public BinaryNumber(String numberStr) {
         super(numberStr, 2);

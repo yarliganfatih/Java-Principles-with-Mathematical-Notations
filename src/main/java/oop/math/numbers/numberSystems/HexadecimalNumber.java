@@ -6,18 +6,11 @@ import oop.math.numbers.NumberSystem;
 
 public class HexadecimalNumber extends NumberSystem {
 
-    @Override
-    public void setRadix(int radix){
-        this.radix = 16;
-    }
-
     public HexadecimalNumber() {
-        super();
-        this.setRadix(16);
+        super(16);
     }
     public HexadecimalNumber(int number) { // insufficient coverage
-        super(number);
-        this.setRadix(16);
+        super(number, 16);
     }
     public HexadecimalNumber(String numberStr) {
         super(numberStr, 16);

@@ -13,7 +13,7 @@ import java.util.List;
 public class NumberSystemTest {
     @Test
     public void testSetSign() {
-        NumberSystem ns = new NumberSystem(1);
+        NumberSystem ns = new NumberSystem(1, 10);
         ns.setSign(+1);
         assertEquals(+1, ns.getSign());
         ns.setSign(+2);
@@ -25,25 +25,14 @@ public class NumberSystemTest {
         ns.setSign(0);
         assertEquals(+1, ns.getSign());
 
-        ns = new NumberSystem(-0);
+        ns = new NumberSystem(-0, 10);
         assertEquals(+1, ns.getSign());
 
-        ns = new NumberSystem(1);
+        ns = new NumberSystem(1, 10);
         ns.reverse();
         assertEquals(-1, ns.getSign());
         ns.reverse();
         assertEquals(+1, ns.getSign());
-    }
-
-    @Test
-    public void testSetRadix() {
-        NumberSystem ns = new NumberSystem();
-        ns.setRadix(8);
-        assertEquals(8, ns.getRadix());
-
-        assertThrows(IllegalArgumentException.class, () -> ns.setRadix(1));
-
-        assertThrows(IllegalArgumentException.class, () -> new NumberSystem("0", 1));
     }
 
     @Test
@@ -72,8 +61,24 @@ public class NumberSystemTest {
     }
 
     @Test
+    public void testConstructorWithRadix() {
+        NumberSystem ns = new NumberSystem(10);
+        assertEquals(new ArrayList<>(List.of(0)), ns.getDigits());
+        assertEquals(10, ns.getRadix());
+        assertEquals("0", ns.toString());
+        
+        assertThrows(IllegalArgumentException.class, () -> new NumberSystem(1));
+        
+        assertThrows(IllegalArgumentException.class, () -> new NumberSystem(0, 1));
+        
+        assertThrows(IllegalArgumentException.class, () -> new NumberSystem("0", 1));
+
+        assertThrows(IllegalArgumentException.class, () -> new NumberSystem(+1, new ArrayList<>(List.of(0)), 1));
+    }
+
+    @Test
     public void testConstructorWithNumber() {
-        NumberSystem ns = new NumberSystem(123);
+        NumberSystem ns = new NumberSystem(123, 10);
         assertEquals(new ArrayList<>(List.of(1, 2, 3)), ns.getDigits());
         assertEquals(10, ns.getRadix());
         assertEquals("123", ns.toString());
@@ -108,7 +113,7 @@ public class NumberSystemTest {
 
     @Test
     public void testToSummation() {
-        NumberSystem ns = new NumberSystem(123);
+        NumberSystem ns = new NumberSystem(123, 10);
         Summation sum = ns.toSummation();
         assertEquals("[(1) x (10^2)] + [(2) x (10)] + [(3) x (10^0)]", sum.toString());
         assertEquals(123.0, sum.result());

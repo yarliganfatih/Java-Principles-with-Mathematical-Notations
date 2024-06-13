@@ -36,15 +36,6 @@ public class DecimalNumberTest {
     }
 
     @Test
-    public void testSetRadix() {
-        DecimalNumber ns = new DecimalNumber();
-        ns.setRadix(8);
-        assertEquals(10, ns.getRadix());
-        ns.setRadix(1);
-        assertEquals(10, ns.getRadix());
-    }
-
-    @Test
     public void testSetDigits() {
         DecimalNumber ns = new DecimalNumber("-12");
         ns.setDigits(new ArrayList<>(List.of(1, 2, 3)));

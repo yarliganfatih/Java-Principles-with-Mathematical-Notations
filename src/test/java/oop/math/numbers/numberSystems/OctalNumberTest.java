@@ -36,15 +36,6 @@ public class OctalNumberTest {
     }
 
     @Test
-    public void testSetRadix() {
-        OctalNumber ns = new OctalNumber();
-        ns.setRadix(8);
-        assertEquals(8, ns.getRadix());
-        ns.setRadix(1);
-        assertEquals(8, ns.getRadix());
-    }
-
-    @Test
     public void testSetDigits() {
         OctalNumber ns = new OctalNumber("-12");
         ns.setDigits(new ArrayList<>(List.of(1, 2, 3)));

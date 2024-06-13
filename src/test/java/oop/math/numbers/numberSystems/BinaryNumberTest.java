@@ -36,15 +36,6 @@ public class BinaryNumberTest {
     }
 
     @Test
-    public void testSetRadix() {
-        BinaryNumber ns = new BinaryNumber();
-        ns.setRadix(8);
-        assertEquals(2, ns.getRadix());
-        ns.setRadix(1);
-        assertEquals(2, ns.getRadix());
-    }
-
-    @Test
     public void testSetDigits() {
         BinaryNumber ns = new BinaryNumber("-10");
         ns.setDigits(new ArrayList<>(List.of(1, 0, 1)));
