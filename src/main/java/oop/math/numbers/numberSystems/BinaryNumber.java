@@ -33,4 +33,9 @@ public class BinaryNumber extends NumberSystem {
     public BinaryNumber twosComplement() {
         return (BinaryNumber) this.onesComplement().add(new BinaryNumber(1));
     }
+    
+    @Override
+    public BinaryNumber toBinaryNumber() {
+        return this;
+    }
 }

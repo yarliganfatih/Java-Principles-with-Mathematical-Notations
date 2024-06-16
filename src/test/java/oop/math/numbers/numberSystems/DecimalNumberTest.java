@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import oop.math.notations.Summation;
+import oop.math.numbers.NumberSystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,5 +102,112 @@ public class DecimalNumberTest {
         Summation sum = ns.toSummation();
         assertEquals("[(1) x (10^2)] + [(2) x (10)] + [(3) x (10^0)]", sum.toString());
         assertEquals(123.0, sum.result());
+    }
+    
+    @Test
+    public void testConvertToRadix() {
+        DecimalNumber ns = new DecimalNumber("10");
+        
+        NumberSystem binary = ns.convertToRadix(2);
+        assertEquals("1010_2", binary.toString());
+
+        NumberSystem octal = ns.convertToRadix(8);
+        assertEquals("12_8", octal.toString());
+
+        NumberSystem decimal = ns.convertToRadix(10);
+        assertEquals("10", decimal.toString());
+
+        NumberSystem hex = ns.convertToRadix(16);
+        assertEquals("a_16", hex.toString());
+    }
+
+    @Test
+    public void testToBinaryNumber() {
+        DecimalNumber ns = new DecimalNumber("10");
+        BinaryNumber binary = ns.toBinaryNumber();
+        assertEquals("1010_2", binary.toString());
+    }
+
+    @Test
+    public void testToOctalNumber() {
+        DecimalNumber ns = new DecimalNumber("10");
+        OctalNumber octal = ns.toOctalNumber();
+        assertEquals("12_8", octal.toString());
+    }
+
+    @Test
+    public void testToDecimalNumber() {
+        DecimalNumber ns = new DecimalNumber("10");
+        DecimalNumber decimal = ns.toDecimalNumber();
+        assertEquals("10", decimal.toString());
+    }
+
+    @Test
+    public void testToHexadecimalNumber() {
+        DecimalNumber ns = new DecimalNumber("10");
+        HexadecimalNumber hex = ns.toHexadecimalNumber();
+        assertEquals("a_16", hex.toString());
+    }
+
+    @Test
+    public void testConvertNegativeToRadix() {
+        DecimalNumber ns = new DecimalNumber("-10");
+        
+        NumberSystem binary = ns.convertToRadix(2);
+        assertEquals("-1010_2", binary.toString());
+
+        NumberSystem octal = ns.convertToRadix(8);
+        assertEquals("-12_8", octal.toString());
+
+        NumberSystem decimal = ns.convertToRadix(10);
+        assertEquals("-10", decimal.toString());
+
+        NumberSystem hex = ns.convertToRadix(16);
+        assertEquals("-a_16", hex.toString());
+    }
+
+    @Test
+    public void testToBinaryNumberNegative() {
+        DecimalNumber ns = new DecimalNumber("-10");
+        BinaryNumber binary = ns.toBinaryNumber();
+        assertEquals("-1010_2", binary.toString());
+    }
+
+    @Test
+    public void testToOctalNumberNegative() {
+        DecimalNumber ns = new DecimalNumber("-10");
+        OctalNumber octal = ns.toOctalNumber();
+        assertEquals("-12_8", octal.toString());
+    }
+
+    @Test
+    public void testToDecimalNumberNegative() {
+        DecimalNumber ns = new DecimalNumber("-10");
+        DecimalNumber decimal = ns.toDecimalNumber();
+        assertEquals("-10", decimal.toString());
+    }
+
+    @Test
+    public void testToHexadecimalNumberNegative() {
+        DecimalNumber ns = new DecimalNumber("-10");
+        HexadecimalNumber hex = ns.toHexadecimalNumber();
+        assertEquals("-a_16", hex.toString());
+    }
+
+    @Test
+    public void testConvertToRadixWithLargeNumber() {
+        NumberSystem ns = new NumberSystem("1000000", 10);
+        
+        NumberSystem binary = ns.convertToRadix(2);
+        assertEquals("11110100001001000000_2", binary.toString());
+
+        NumberSystem octal = ns.convertToRadix(8);
+        assertEquals("3641100_8", octal.toString());
+
+        NumberSystem decimal = ns.convertToRadix(10);
+        assertEquals("1000000", decimal.toString());
+
+        NumberSystem hex = ns.convertToRadix(16);
+        assertEquals("f4240_16", hex.toString());
     }
 }

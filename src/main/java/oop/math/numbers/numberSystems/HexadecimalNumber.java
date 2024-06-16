@@ -18,4 +18,9 @@ public class HexadecimalNumber extends NumberSystem {
     public HexadecimalNumber(int sign, List<Integer> digits) {
         super(sign, digits, 16);
     }
+    
+    @Override
+    public HexadecimalNumber toHexadecimalNumber() {
+        return this;
+    }
 }

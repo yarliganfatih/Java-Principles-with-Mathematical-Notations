@@ -18,4 +18,9 @@ public class OctalNumber extends NumberSystem {
     public OctalNumber(int sign, List<Integer> digits){
         super(sign, digits, 8);
     }
+    
+    @Override
+    public OctalNumber toOctalNumber() {
+        return this;
+    }
 }

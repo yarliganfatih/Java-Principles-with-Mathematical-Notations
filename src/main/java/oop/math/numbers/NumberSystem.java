@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 import oop.math.notations.Exponential;
 import oop.math.notations.Multiplication;
 import oop.math.notations.Summation;
+import oop.math.numbers.numberSystems.BinaryNumber;
+import oop.math.numbers.numberSystems.DecimalNumber;
+import oop.math.numbers.numberSystems.HexadecimalNumber;
+import oop.math.numbers.numberSystems.OctalNumber;
 
 public class NumberSystem {
     private int sign = +1;
@@ -121,6 +125,32 @@ public class NumberSystem {
         if (this.getSign() == -1)
             sum.reverse();
         return sum;
+    }
+    
+    public NumberSystem convertToRadix(int radix) {
+        int decimal = (int) this.toSummation().result();
+        if (radix == 10)
+            return new DecimalNumber(decimal); // upcasting
+        List<Integer> digitList = decimalToDigits(decimal, radix);
+        if (radix == 2)
+            return new BinaryNumber(this.getSign(), digitList); // upcasting
+        if (radix == 8)
+            return new OctalNumber(this.getSign(), digitList); // upcasting
+        if (radix == 16)
+            return new HexadecimalNumber(this.getSign(), digitList); // upcasting
+        return new NumberSystem(this.getSign(), digitList, radix);
+    }
+    public BinaryNumber toBinaryNumber() {
+        return (BinaryNumber) this.convertToRadix(2); // downcasting
+    }
+    public OctalNumber toOctalNumber() {
+        return (OctalNumber) this.convertToRadix(8); // downcasting
+    }
+    public DecimalNumber toDecimalNumber() {
+        return (DecimalNumber) this.convertToRadix(10); // downcasting
+    }
+    public HexadecimalNumber toHexadecimalNumber() {
+        return (HexadecimalNumber) this.convertToRadix(16); // downcasting
     }
 
     public NumberSystem add(NumberSystem other) {

@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import oop.math.notations.Summation;
+import oop.math.numbers.numberSystems.BinaryNumber;
+import oop.math.numbers.numberSystems.DecimalNumber;
+import oop.math.numbers.numberSystems.HexadecimalNumber;
+import oop.math.numbers.numberSystems.OctalNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +126,113 @@ public class NumberSystemTest {
         sum = ns.toSummation();
         assertEquals("[(10) x (16^2) x (-1)] + [(1) x (16) x (-1)] + [(15) x (16^0) x (-1)]", sum.toString());
         assertEquals(-2591.0, sum.result());
+    }
+
+    @Test
+    public void testConvertToRadix() {
+        NumberSystem ns = new NumberSystem("10", 10);
+        
+        NumberSystem binary = ns.convertToRadix(2);
+        assertEquals("1010_2", binary.toString());
+
+        NumberSystem octal = ns.convertToRadix(8);
+        assertEquals("12_8", octal.toString());
+
+        NumberSystem decimal = ns.convertToRadix(10);
+        assertEquals("10", decimal.toString());
+
+        NumberSystem hex = ns.convertToRadix(16);
+        assertEquals("a_16", hex.toString());
+    }
+
+    @Test
+    public void testToBinaryNumber() {
+        NumberSystem ns = new NumberSystem("10", 10);
+        BinaryNumber binary = ns.toBinaryNumber();
+        assertEquals("1010_2", binary.toString());
+    }
+
+    @Test
+    public void testToOctalNumber() {
+        NumberSystem ns = new NumberSystem("10", 10);
+        OctalNumber octal = ns.toOctalNumber();
+        assertEquals("12_8", octal.toString());
+    }
+
+    @Test
+    public void testToDecimalNumber() {
+        NumberSystem ns = new NumberSystem("10", 10);
+        DecimalNumber decimal = ns.toDecimalNumber();
+        assertEquals("10", decimal.toString());
+    }
+
+    @Test
+    public void testToHexadecimalNumber() {
+        NumberSystem ns = new NumberSystem("10", 10);
+        HexadecimalNumber hex = ns.toHexadecimalNumber();
+        assertEquals("a_16", hex.toString());
+    }
+
+    @Test
+    public void testConvertNegativeToRadix() {
+        NumberSystem ns = new NumberSystem("-10", 10);
+        
+        NumberSystem binary = ns.convertToRadix(2);
+        assertEquals("-1010_2", binary.toString());
+
+        NumberSystem octal = ns.convertToRadix(8);
+        assertEquals("-12_8", octal.toString());
+
+        NumberSystem decimal = ns.convertToRadix(10);
+        assertEquals("-10", decimal.toString());
+
+        NumberSystem hex = ns.convertToRadix(16);
+        assertEquals("-a_16", hex.toString());
+    }
+
+    @Test
+    public void testToBinaryNumberNegative() {
+        NumberSystem ns = new NumberSystem("-10", 10);
+        BinaryNumber binary = ns.toBinaryNumber();
+        assertEquals("-1010_2", binary.toString());
+    }
+
+    @Test
+    public void testToOctalNumberNegative() {
+        NumberSystem ns = new NumberSystem("-10", 10);
+        OctalNumber octal = ns.toOctalNumber();
+        assertEquals("-12_8", octal.toString());
+    }
+
+    @Test
+    public void testToDecimalNumberNegative() {
+        NumberSystem ns = new NumberSystem("-10", 10);
+        DecimalNumber decimal = ns.toDecimalNumber();
+        assertEquals("-10", decimal.toString());
+    }
+
+    @Test
+    public void testToHexadecimalNumberNegative() {
+        NumberSystem ns = new NumberSystem("-10", 10);
+        HexadecimalNumber hex = ns.toHexadecimalNumber();
+        assertEquals("-a_16", hex.toString());
+    }
+
+    @Test
+    public void testConvertToRadixWithLargeNumber() {
+        NumberSystem ns = new NumberSystem("1000000", 10);
+        
+        NumberSystem binary = ns.convertToRadix(2);
+        assertEquals("11110100001001000000_2", binary.toString());
+
+        NumberSystem octal = ns.convertToRadix(8);
+        assertEquals("3641100_8", octal.toString());
+
+        NumberSystem decimal = ns.convertToRadix(10);
+        assertEquals("1000000", decimal.toString());
+
+        NumberSystem hex = ns.convertToRadix(16);
+        assertEquals("f4240_16", hex.toString());
     }
 
     @Test

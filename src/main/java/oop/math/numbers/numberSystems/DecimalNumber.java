@@ -22,4 +22,9 @@ public class DecimalNumber extends NumberSystem {
     public Integer toInt() {
         return (int) this.toSummation().result();
     }
+    
+    @Override
+    public DecimalNumber toDecimalNumber() {
+        return this;
+    }
 }
