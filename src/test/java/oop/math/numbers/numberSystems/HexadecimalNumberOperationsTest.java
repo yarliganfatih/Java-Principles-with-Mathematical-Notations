@@ -16,6 +16,15 @@ public class HexadecimalNumberOperationsTest {
     }
 
     @Test
+    public void testAddEffectOther() {
+        HexadecimalNumber ns1 = new HexadecimalNumber("10");
+        HexadecimalNumber ns2 = new HexadecimalNumber("5");
+        ns1.add(ns2);
+        assertEquals("5_16", ns2.toString()); // should not be affected
+        assertEquals("15_16", ns1.toString());
+    }
+
+    @Test
     public void testAdd() {
         HexadecimalNumber ns1 = new HexadecimalNumber("10");
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
@@ -55,6 +64,15 @@ public class HexadecimalNumberOperationsTest {
     }
 
     @Test
+    public void testSubtEffectOther() {
+        HexadecimalNumber ns1 = new HexadecimalNumber("10");
+        HexadecimalNumber ns2 = new HexadecimalNumber("5");
+        ns1.subt(ns2);
+        assertEquals("5_16", ns2.toString()); // should not be affected
+        assertEquals("b_16", ns1.toString());
+    }
+
+    @Test
     public void testSubt() {
         HexadecimalNumber ns1 = new HexadecimalNumber("10");
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
@@ -91,6 +109,15 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns1 = new HexadecimalNumber("10");
         NumberSystem ns2 = new NumberSystem("5", 10);
         assertThrows(IllegalArgumentException.class, () -> ns1.mult(ns2));
+    }
+
+    @Test
+    public void testMultEffectOther() {
+        HexadecimalNumber ns1 = new HexadecimalNumber("10");
+        HexadecimalNumber ns2 = new HexadecimalNumber("5");
+        ns1.mult(ns2);
+        assertEquals("5_16", ns2.toString()); // should not be affected
+        assertEquals("50_16", ns1.toString());
     }
 
     @Test
@@ -137,6 +164,15 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns1 = new HexadecimalNumber("10");
         HexadecimalNumber ns2 = new HexadecimalNumber("0");
         assertThrows(IllegalArgumentException.class, () -> ns1.divi(ns2));
+    }
+
+    @Test
+    public void testDiviEffectOther() {
+        HexadecimalNumber ns1 = new HexadecimalNumber("100");
+        HexadecimalNumber ns2 = new HexadecimalNumber("10");
+        ns1.divi(ns2);
+        assertEquals("10_16", ns2.toString()); // should not be affected
+        assertEquals("10_16", ns1.toString());
     }
 
     @Test

@@ -16,6 +16,15 @@ public class OctalNumberOperationsTest {
     }
 
     @Test
+    public void testAddEffectOther() {
+        OctalNumber ns1 = new OctalNumber("10");
+        OctalNumber ns2 = new OctalNumber("5");
+        ns1.add(ns2);
+        assertEquals("5_8", ns2.toString()); // should not be affected
+        assertEquals("15_8", ns1.toString());
+    }
+
+    @Test
     public void testAdd() {
         OctalNumber ns1 = new OctalNumber("10");
         OctalNumber ns2 = new OctalNumber("5");
@@ -55,6 +64,15 @@ public class OctalNumberOperationsTest {
     }
 
     @Test
+    public void testSubtEffectOther() {
+        OctalNumber ns1 = new OctalNumber("10");
+        OctalNumber ns2 = new OctalNumber("5");
+        ns1.subt(ns2);
+        assertEquals("5_8", ns2.toString()); // should not be affected
+        assertEquals("3_8", ns1.toString());
+    }
+
+    @Test
     public void testSubt() {
         OctalNumber ns1 = new OctalNumber("10");
         OctalNumber ns2 = new OctalNumber("5");
@@ -91,6 +109,15 @@ public class OctalNumberOperationsTest {
         OctalNumber ns1 = new OctalNumber("10");
         NumberSystem ns2 = new NumberSystem("5", 10);
         assertThrows(IllegalArgumentException.class, () -> ns1.mult(ns2));
+    }
+
+    @Test
+    public void testMultEffectOther() {
+        OctalNumber ns1 = new OctalNumber("10");
+        OctalNumber ns2 = new OctalNumber("5");
+        ns1.mult(ns2);
+        assertEquals("5_8", ns2.toString()); // should not be affected
+        assertEquals("50_8", ns1.toString());
     }
 
     @Test
@@ -137,6 +164,15 @@ public class OctalNumberOperationsTest {
         OctalNumber ns1 = new OctalNumber("10");
         OctalNumber ns2 = new OctalNumber("0");
         assertThrows(IllegalArgumentException.class, () -> ns1.divi(ns2));
+    }
+
+    @Test
+    public void testDiviEffectOther() {
+        OctalNumber ns1 = new OctalNumber("100");
+        OctalNumber ns2 = new OctalNumber("20");
+        ns1.divi(ns2);
+        assertEquals("20_8", ns2.toString()); // should not be affected
+        assertEquals("4_8", ns1.toString());
     }
 
     @Test

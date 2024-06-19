@@ -16,6 +16,15 @@ public class DecimalNumberOperationsTest {
     }
 
     @Test
+    public void testAddEffectOther() {
+        DecimalNumber ns1 = new DecimalNumber("10");
+        DecimalNumber ns2 = new DecimalNumber("5");
+        ns1.add(ns2);
+        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("15", ns1.toString());
+    }
+
+    @Test
     public void testAdd() {
         DecimalNumber ns1 = new DecimalNumber("10");
         DecimalNumber ns2 = new DecimalNumber("5");
@@ -55,6 +64,15 @@ public class DecimalNumberOperationsTest {
     }
 
     @Test
+    public void testSubtEffectOther() {
+        DecimalNumber ns1 = new DecimalNumber("10");
+        DecimalNumber ns2 = new DecimalNumber("5");
+        ns1.subt(ns2);
+        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns1.toString());
+    }
+
+    @Test
     public void testSubt() {
         DecimalNumber ns1 = new DecimalNumber("10");
         DecimalNumber ns2 = new DecimalNumber("5");
@@ -91,6 +109,15 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns1 = new DecimalNumber("10");
         NumberSystem ns2 = new NumberSystem("5", 11);
         assertThrows(IllegalArgumentException.class, () -> ns1.mult(ns2));
+    }
+
+    @Test
+    public void testMultEffectOther() {
+        DecimalNumber ns1 = new DecimalNumber("10");
+        DecimalNumber ns2 = new DecimalNumber("5");
+        ns1.mult(ns2);
+        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("50", ns1.toString());
     }
 
     @Test
@@ -137,6 +164,15 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns1 = new DecimalNumber("10");
         DecimalNumber ns2 = new DecimalNumber("0");
         assertThrows(IllegalArgumentException.class, () -> ns1.divi(ns2));
+    }
+
+    @Test
+    public void testDiviEffectOther() {
+        DecimalNumber ns1 = new DecimalNumber("100");
+        DecimalNumber ns2 = new DecimalNumber("50");
+        ns1.divi(ns2);
+        assertEquals("50", ns2.toString()); // should not be affected
+        assertEquals("2", ns1.toString());
     }
 
     @Test

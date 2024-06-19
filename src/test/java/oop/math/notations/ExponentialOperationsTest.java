@@ -11,7 +11,9 @@ public class ExponentialOperationsTest {
     @Test
     public void testSqrtRational() {
         Exponential e = new Exponential(4);
-        e.sqrt(new Rational(2));
+        Rational r = new Rational(2);
+        e.sqrt(r);
+        assertEquals("2", r.toString()); // should not be affected
         assertEquals("√4", e.toString());
         assertEquals(2.0, e.result());
     }
@@ -27,7 +29,9 @@ public class ExponentialOperationsTest {
     @Test
     public void test_SqrtRational() {
         Exponential e = new Exponential(4);
-        Exponential result = e._sqrt(new Rational(2));
+        Rational r = new Rational(2);
+        Exponential result = e._sqrt(r);
+        assertEquals("2", r.toString()); // should not be affected
         assertEquals("√4", result.toString());
         assertEquals(2.0, result.result());
     }
@@ -43,7 +47,9 @@ public class ExponentialOperationsTest {
     @Test
     public void testPowRational() {
         Exponential e = new Exponential(2);
-        e.pow(new Rational(3));
+        Rational r = new Rational(3);
+        e.pow(r);
+        assertEquals("3", r.toString()); // should not be affected
         assertEquals("2^3", e.toString());
         assertEquals(8.0, e.result());
     }
@@ -59,7 +65,9 @@ public class ExponentialOperationsTest {
     @Test
     public void test_PowRational() {
         Exponential e = new Exponential(2);
-        Exponential result = e._pow(new Rational(3));
+        Rational r = new Rational(3);
+        Exponential result = e._pow(r);
+        assertEquals("3", r.toString()); // should not be affected
         assertEquals("2^3", result.toString());
         assertEquals(8.0, result.result());
     }
@@ -77,6 +85,7 @@ public class ExponentialOperationsTest {
         Exponential e = new Exponential(2);
         Multiplication m = new Multiplication(new Exponential(3));
         Multiplication result = e._mult(m);
+        assertEquals("(3)", m.toString()); // should not be affected
         assertEquals("(2) x (3)", result.toString());
         assertEquals(6.0, result.result());
     }
@@ -86,6 +95,7 @@ public class ExponentialOperationsTest {
         Exponential e1 = new Exponential(2);
         Exponential e2 = new Exponential(3);
         Multiplication result = e1._mult(e2);
+        assertEquals("3", e2.toString()); // should not be affected
         assertEquals("(2) x (3)", result.toString());
         assertEquals(6.0, result.result());
     }
@@ -103,6 +113,7 @@ public class ExponentialOperationsTest {
         Exponential e = new Exponential(2);
         Multiplication m = new Multiplication(new Exponential(3));
         Multiplication result = e._divi(m);
+        assertEquals("(3)", m.toString()); // should not be affected
         assertEquals("(2) x (3^-1)", result.toString());
         assertEquals(2.0 / 3.0, result.result());
     }
@@ -112,6 +123,7 @@ public class ExponentialOperationsTest {
         Exponential e1 = new Exponential(2);
         Exponential e2 = new Exponential(3);
         Multiplication result = e1._divi(e2);
+        assertEquals("3", e2.toString()); // should not be affected
         assertEquals("(2) x (3^-1)", result.toString());
         assertEquals(2.0 / 3.0, result.result());
     }
@@ -129,6 +141,7 @@ public class ExponentialOperationsTest {
         Exponential e = new Exponential(2);
         Summation s = new Summation(new Multiplication(new Exponential(3)));
         Summation result = e._add(s);
+        assertEquals("[(3)]", s.toString()); // should not be affected
         assertEquals("[(2)] + [(3)]", result.toString());
         assertEquals(5.0, result.result());
     }
@@ -138,6 +151,7 @@ public class ExponentialOperationsTest {
         Exponential e = new Exponential(2);
         Multiplication m = new Multiplication(new Exponential(3));
         Summation result = e._add(m);
+        assertEquals("(3)", m.toString()); // should not be affected
         assertEquals("[(2)] + [(3)]", result.toString());
         assertEquals(5.0, result.result());
     }
@@ -147,6 +161,7 @@ public class ExponentialOperationsTest {
         Exponential e1 = new Exponential(2);
         Exponential e2 = new Exponential(3);
         Summation result = e1._add(e2);
+        assertEquals("3", e2.toString()); // should not be affected
         assertEquals("[(2)] + [(3)]", result.toString());
         assertEquals(5.0, result.result());
     }
@@ -164,6 +179,7 @@ public class ExponentialOperationsTest {
         Exponential e = new Exponential(2);
         Summation s = new Summation(new Multiplication(new Exponential(3)));
         Summation result = e._subt(s);
+        assertEquals("[(3)]", s.toString()); // should not be affected
         assertEquals("[(2)] + [(3) x (-1)]", result.toString());
         assertEquals(-1.0, result.result());
     }
@@ -173,6 +189,7 @@ public class ExponentialOperationsTest {
         Exponential e = new Exponential(2);
         Multiplication m = new Multiplication(new Exponential(3));
         Summation result = e._subt(m);
+        assertEquals("(3)", m.toString()); // should not be affected
         assertEquals("[(2)] + [(3) x (-1)]", result.toString());
         assertEquals(-1.0, result.result());
     }
@@ -182,6 +199,7 @@ public class ExponentialOperationsTest {
         Exponential e1 = new Exponential(2);
         Exponential e2 = new Exponential(3);
         Summation result = e1._subt(e2);
+        assertEquals("3", e2.toString()); // should not be affected
         assertEquals("[(2)] + [(3) x (-1)]", result.toString());
         assertEquals(-1.0, result.result());
     }

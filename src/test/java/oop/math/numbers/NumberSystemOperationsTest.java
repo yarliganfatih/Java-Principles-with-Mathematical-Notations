@@ -14,6 +14,15 @@ public class NumberSystemOperationsTest {
     }
 
     @Test
+    public void testAddEffectOther() {
+        NumberSystem ns1 = new NumberSystem("10", 10);
+        NumberSystem ns2 = new NumberSystem("5", 10);
+        ns1.add(ns2);
+        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("15", ns1.toString());
+    }
+
+    @Test
     public void testAddRadix10() {
         NumberSystem ns1 = new NumberSystem("10", 10);
         NumberSystem ns2 = new NumberSystem("5", 10);
@@ -29,6 +38,15 @@ public class NumberSystemOperationsTest {
     }
 
     @Test
+    public void testSubtEffectOther() {
+        NumberSystem ns1 = new NumberSystem("10", 10);
+        NumberSystem ns2 = new NumberSystem("5", 10);
+        ns1.subt(ns2);
+        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns1.toString());
+    }
+
+    @Test
     public void testSubtRadix10() {
         NumberSystem ns1 = new NumberSystem("10", 10);
         NumberSystem ns2 = new NumberSystem("5", 10);
@@ -41,6 +59,15 @@ public class NumberSystemOperationsTest {
         NumberSystem ns1 = new NumberSystem("10", 10);
         NumberSystem ns2 = new NumberSystem("5", 11);
         assertThrows(IllegalArgumentException.class, () -> ns1.mult(ns2));
+    }
+
+    @Test
+    public void testMultEffectOther() {
+        NumberSystem ns1 = new NumberSystem("10", 10);
+        NumberSystem ns2 = new NumberSystem("5", 10);
+        ns1.mult(ns2);
+        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("50", ns1.toString());
     }
 
     @Test
@@ -63,6 +90,15 @@ public class NumberSystemOperationsTest {
         NumberSystem ns1 = new NumberSystem("10", 10);
         NumberSystem ns2 = new NumberSystem("0", 10);
         assertThrows(IllegalArgumentException.class, () -> ns1.divi(ns2));
+    }
+
+    @Test
+    public void testDiviEffectOther() {
+        NumberSystem ns1 = new NumberSystem("100", 10);
+        NumberSystem ns2 = new NumberSystem("50", 10);
+        ns1.divi(ns2);
+        assertEquals("50", ns2.toString()); // should not be affected
+        assertEquals("2", ns1.toString());
     }
 
     @Test
