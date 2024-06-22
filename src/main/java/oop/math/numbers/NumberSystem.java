@@ -27,8 +27,9 @@ public class NumberSystem {
         else if (number < 0)
             this.sign = -1;
     }
-    public void reverse() {
+    public NumberSystem reverse() {
         this.setSign(this.sign * -1);
+        return this;
     }
 
     public List<Integer> getDigits() {
@@ -78,6 +79,11 @@ public class NumberSystem {
         this(radix);
         this.setSign(sign);
         this.setDigits(digits);
+    }
+    public NumberSystem(NumberSystem other) {
+        this(other.getRadix());
+        this.setSign(other.getSign());
+        this.setDigits(other.getDigits());
     }
 
     public List<Integer> stringToDigits(String numberStr) {
@@ -166,8 +172,8 @@ public class NumberSystem {
     }
 
     public NumberSystem subt(NumberSystem other) {
-        other.reverse();
-        return this.add(other);
+        other = new NumberSystem(other);
+        return this.add(other.reverse());
     }
 
     public NumberSystem mult(NumberSystem other) {

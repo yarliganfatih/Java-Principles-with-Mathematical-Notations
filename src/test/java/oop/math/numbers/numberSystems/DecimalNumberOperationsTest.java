@@ -20,7 +20,7 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns1 = new DecimalNumber("10");
         DecimalNumber ns2 = new DecimalNumber("5");
         ns1.add(ns2);
-        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns2.toString());
         assertEquals("15", ns1.toString());
     }
 
@@ -68,7 +68,7 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns1 = new DecimalNumber("10");
         DecimalNumber ns2 = new DecimalNumber("5");
         ns1.subt(ns2);
-        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns2.toString());
         assertEquals("5", ns1.toString());
     }
 
@@ -116,7 +116,7 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns1 = new DecimalNumber("10");
         DecimalNumber ns2 = new DecimalNumber("5");
         ns1.mult(ns2);
-        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns2.toString());
         assertEquals("50", ns1.toString());
     }
 
@@ -171,7 +171,7 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns1 = new DecimalNumber("100");
         DecimalNumber ns2 = new DecimalNumber("50");
         ns1.divi(ns2);
-        assertEquals("50", ns2.toString()); // should not be affected
+        assertEquals("50", ns2.toString());
         assertEquals("2", ns1.toString());
     }
 

@@ -20,7 +20,7 @@ public class OctalNumberOperationsTest {
         OctalNumber ns1 = new OctalNumber("10");
         OctalNumber ns2 = new OctalNumber("5");
         ns1.add(ns2);
-        assertEquals("5_8", ns2.toString()); // should not be affected
+        assertEquals("5_8", ns2.toString());
         assertEquals("15_8", ns1.toString());
     }
 
@@ -68,7 +68,7 @@ public class OctalNumberOperationsTest {
         OctalNumber ns1 = new OctalNumber("10");
         OctalNumber ns2 = new OctalNumber("5");
         ns1.subt(ns2);
-        assertEquals("5_8", ns2.toString()); // should not be affected
+        assertEquals("5_8", ns2.toString());
         assertEquals("3_8", ns1.toString());
     }
 
@@ -116,7 +116,7 @@ public class OctalNumberOperationsTest {
         OctalNumber ns1 = new OctalNumber("10");
         OctalNumber ns2 = new OctalNumber("5");
         ns1.mult(ns2);
-        assertEquals("5_8", ns2.toString()); // should not be affected
+        assertEquals("5_8", ns2.toString());
         assertEquals("50_8", ns1.toString());
     }
 
@@ -171,7 +171,7 @@ public class OctalNumberOperationsTest {
         OctalNumber ns1 = new OctalNumber("100");
         OctalNumber ns2 = new OctalNumber("20");
         ns1.divi(ns2);
-        assertEquals("20_8", ns2.toString()); // should not be affected
+        assertEquals("20_8", ns2.toString());
         assertEquals("4_8", ns1.toString());
     }
 

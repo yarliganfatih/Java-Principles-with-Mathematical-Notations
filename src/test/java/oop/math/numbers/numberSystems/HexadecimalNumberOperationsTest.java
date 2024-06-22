@@ -20,7 +20,7 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns1 = new HexadecimalNumber("10");
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
         ns1.add(ns2);
-        assertEquals("5_16", ns2.toString()); // should not be affected
+        assertEquals("5_16", ns2.toString());
         assertEquals("15_16", ns1.toString());
     }
 
@@ -68,7 +68,7 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns1 = new HexadecimalNumber("10");
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
         ns1.subt(ns2);
-        assertEquals("5_16", ns2.toString()); // should not be affected
+        assertEquals("5_16", ns2.toString());
         assertEquals("b_16", ns1.toString());
     }
 
@@ -116,7 +116,7 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns1 = new HexadecimalNumber("10");
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
         ns1.mult(ns2);
-        assertEquals("5_16", ns2.toString()); // should not be affected
+        assertEquals("5_16", ns2.toString());
         assertEquals("50_16", ns1.toString());
     }
 
@@ -171,7 +171,7 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns1 = new HexadecimalNumber("100");
         HexadecimalNumber ns2 = new HexadecimalNumber("10");
         ns1.divi(ns2);
-        assertEquals("10_16", ns2.toString()); // should not be affected
+        assertEquals("10_16", ns2.toString());
         assertEquals("10_16", ns1.toString());
     }
 

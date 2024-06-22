@@ -5,7 +5,7 @@ import oop.math.notations.Multiplication;
 
 public interface Mult_Layer {
     public default Multiplication toMultiplication(){
-        if(this instanceof Multiplication) return (Multiplication)this;
+        if(this instanceof Multiplication) return new Multiplication((Multiplication)this);
         if(this instanceof Exponential) return new Multiplication((Exponential)this);
         // if(this instanceof Integer) return new Multiplication(new Exponential((Integer)this)); // TODO #3
         return null;
@@ -19,7 +19,8 @@ public interface Mult_Layer {
     }
     
     public default Multiplication _divi(Mult_Layer multiParam) {
-        return this._mult(multiParam.toMultiplication().reverse());
+        Multiplication other = new Multiplication(multiParam.toMultiplication());
+        return this._mult(other.reverse());
     }
     public default Multiplication _divi(Integer integer) {
         return this._divi(new Exponential(integer));

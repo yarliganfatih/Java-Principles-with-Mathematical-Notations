@@ -20,7 +20,7 @@ public class BinaryNumberOperationsTest {
         BinaryNumber ns1 = new BinaryNumber("1010");
         BinaryNumber ns2 = new BinaryNumber("0101");
         ns1.add(ns2);
-        assertEquals("101_2", ns2.toString()); // should not be affected
+        assertEquals("101_2", ns2.toString());
         assertEquals("1111_2", ns1.toString());
     }
 
@@ -68,7 +68,7 @@ public class BinaryNumberOperationsTest {
         BinaryNumber ns1 = new BinaryNumber("1010");
         BinaryNumber ns2 = new BinaryNumber("0101");
         ns1.subt(ns2);
-        assertEquals("101_2", ns2.toString()); // should not be affected
+        assertEquals("101_2", ns2.toString());
         assertEquals("101_2", ns1.toString());
     }
 
@@ -116,7 +116,7 @@ public class BinaryNumberOperationsTest {
         BinaryNumber ns1 = new BinaryNumber("1010");
         BinaryNumber ns2 = new BinaryNumber("0101");
         ns1.mult(ns2);
-        assertEquals("101_2", ns2.toString()); // should not be affected
+        assertEquals("101_2", ns2.toString());
         assertEquals("110010_2", ns1.toString());
     }
 
@@ -171,7 +171,7 @@ public class BinaryNumberOperationsTest {
         BinaryNumber ns1 = new BinaryNumber("1100100");
         BinaryNumber ns2 = new BinaryNumber("110010");
         ns1.divi(ns2);
-        assertEquals("110010_2", ns2.toString()); // should not be affected
+        assertEquals("110010_2", ns2.toString());
         assertEquals("10_2", ns1.toString());
     }
 

@@ -10,7 +10,7 @@ public class SummationOperationsTest {
         Summation s1 = new Summation(new Multiplication(new Exponential(2)));
         Summation s2 = new Summation(new Multiplication(new Exponential(3)));
         s1.add(s2);
-        assertEquals("[(3)]", s2.toString()); // should not be affected
+        assertEquals("[(3)]", s2.toString());
         assertEquals("[(2)] + [(3)]", s1.toString());
         assertEquals(5.0, s1.result());
     }
@@ -20,7 +20,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Multiplication m = new Multiplication(new Exponential(3));
         s.add(m);
-        assertEquals("(3)", m.toString()); // should not be affected
+        assertEquals("(3)", m.toString());
         assertEquals("[(2)] + [(3)]", s.toString());
         assertEquals(5.0, s.result());
     }
@@ -30,7 +30,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Exponential e = new Exponential(3);
         s.add(e);
-        assertEquals("3", e.toString()); // should not be affected
+        assertEquals("3", e.toString());
         assertEquals("[(2)] + [(3)]", s.toString());
         assertEquals(5.0, s.result());
     }
@@ -48,7 +48,7 @@ public class SummationOperationsTest {
         Summation s1 = new Summation(new Multiplication(new Exponential(2)));
         Summation s2 = new Summation(new Multiplication(new Exponential(3)));
         Summation result = s1._add(s2);
-        assertEquals("[(3)]", s2.toString()); // should not be affected
+        assertEquals("[(3)]", s2.toString());
         assertEquals("[(2)] + [(3)]", result.toString());
         assertEquals(5.0, result.result());
     }
@@ -58,7 +58,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Multiplication m = new Multiplication(new Exponential(3));
         Summation result = s._add(m);
-        assertEquals("(3)", m.toString()); // should not be affected
+        assertEquals("(3)", m.toString());
         assertEquals("[(2)] + [(3)]", result.toString());
         assertEquals(5.0, result.result());
     }
@@ -68,7 +68,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Exponential e = new Exponential(3);
         Summation result = s._add(e);
-        assertEquals("3", e.toString()); // should not be affected
+        assertEquals("3", e.toString());
         assertEquals("[(2)] + [(3)]", result.toString());
         assertEquals(5.0, result.result());
     }
@@ -86,7 +86,7 @@ public class SummationOperationsTest {
         Summation s1 = new Summation(new Multiplication(new Exponential(2)));
         Summation s2 = new Summation(new Multiplication(new Exponential(3)));
         s1.subt(s2);
-        assertEquals("[(3)]", s2.toString()); // should not be affected
+        assertEquals("[(3)]", s2.toString());
         assertEquals("[(2)] + [(3) x (-1)]", s1.toString());
         assertEquals(-1.0, s1.result());
     }
@@ -96,7 +96,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Multiplication m = new Multiplication(new Exponential(3));
         s.subt(m);
-        assertEquals("(3)", m.toString()); // should not be affected
+        assertEquals("(3)", m.toString());
         assertEquals("[(2)] + [(3) x (-1)]", s.toString());
         assertEquals(-1.0, s.result());
     }
@@ -106,7 +106,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Exponential e = new Exponential(3);
         s.subt(e);
-        assertEquals("3", e.toString()); // should not be affected
+        assertEquals("3", e.toString());
         assertEquals("[(2)] + [(3) x (-1)]", s.toString());
         assertEquals(-1.0, s.result());
     }
@@ -124,7 +124,7 @@ public class SummationOperationsTest {
         Summation s1 = new Summation(new Multiplication(new Exponential(2)));
         Summation s2 = new Summation(new Multiplication(new Exponential(3)));
         Summation result = s1._subt(s2);
-        assertEquals("[(3)]", s2.toString()); // should not be affected
+        assertEquals("[(3)]", s2.toString());
         assertEquals("[(2)] + [(3) x (-1)]", result.toString());
         assertEquals(-1.0, result.result());
     }
@@ -134,7 +134,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Multiplication m = new Multiplication(new Exponential(3));
         Summation result = s._subt(m);
-        assertEquals("(3)", m.toString()); // should not be affected
+        assertEquals("(3)", m.toString());
         assertEquals("[(2)] + [(3) x (-1)]", result.toString());
         assertEquals(-1.0, result.result());
     }
@@ -144,7 +144,7 @@ public class SummationOperationsTest {
         Summation s = new Summation(new Multiplication(new Exponential(2)));
         Exponential e = new Exponential(3);
         Summation result = s._subt(e);
-        assertEquals("3", e.toString()); // should not be affected
+        assertEquals("3", e.toString());
         assertEquals("[(2)] + [(3) x (-1)]", result.toString());
         assertEquals(-1.0, result.result());
     }

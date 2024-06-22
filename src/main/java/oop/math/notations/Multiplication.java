@@ -23,7 +23,10 @@ public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
     }
 
     public Multiplication(Multiplication other) {
-        this.mult(other);
+        this.elements = new ArrayList<>();
+        for (Exponential e : other.getElements()) {
+            this.elements.add(new Exponential(e));
+        }
     }
 
     public Multiplication(Exponential element) {
@@ -57,7 +60,8 @@ public class Multiplication implements Notation, Sum_Layer, Mult_Layer {
     }
 
     public Multiplication divi(Mult_Layer multiParam) {
-        return this.mult(multiParam.toMultiplication().reverse());
+        Multiplication other = new Multiplication(multiParam.toMultiplication());
+        return this.mult(other.reverse());
     }
     public Multiplication divi(Integer integer) {
         return this.divi(new Exponential(integer));

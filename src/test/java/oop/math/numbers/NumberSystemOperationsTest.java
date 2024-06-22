@@ -18,7 +18,7 @@ public class NumberSystemOperationsTest {
         NumberSystem ns1 = new NumberSystem("10", 10);
         NumberSystem ns2 = new NumberSystem("5", 10);
         ns1.add(ns2);
-        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns2.toString());
         assertEquals("15", ns1.toString());
     }
 
@@ -42,7 +42,7 @@ public class NumberSystemOperationsTest {
         NumberSystem ns1 = new NumberSystem("10", 10);
         NumberSystem ns2 = new NumberSystem("5", 10);
         ns1.subt(ns2);
-        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns2.toString());
         assertEquals("5", ns1.toString());
     }
 
@@ -66,7 +66,7 @@ public class NumberSystemOperationsTest {
         NumberSystem ns1 = new NumberSystem("10", 10);
         NumberSystem ns2 = new NumberSystem("5", 10);
         ns1.mult(ns2);
-        assertEquals("5", ns2.toString()); // should not be affected
+        assertEquals("5", ns2.toString());
         assertEquals("50", ns1.toString());
     }
 
@@ -97,7 +97,7 @@ public class NumberSystemOperationsTest {
         NumberSystem ns1 = new NumberSystem("100", 10);
         NumberSystem ns2 = new NumberSystem("50", 10);
         ns1.divi(ns2);
-        assertEquals("50", ns2.toString()); // should not be affected
+        assertEquals("50", ns2.toString());
         assertEquals("2", ns1.toString());
     }
 

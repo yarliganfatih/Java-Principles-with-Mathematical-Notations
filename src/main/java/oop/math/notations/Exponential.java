@@ -95,7 +95,8 @@ public class Exponential implements Notation, Sum_Layer, Mult_Layer {
     }
 
     public Exponential sqrt(Rational rational){
-        return this.pow(rational._reverse());
+        Rational other = new Rational(rational);
+        return this.pow(other._reverse());
     }
     public Exponential sqrt(Integer integer){
         return this.sqrt(new Rational(integer));
@@ -113,7 +114,8 @@ public class Exponential implements Notation, Sum_Layer, Mult_Layer {
     }
 
     public Exponential _sqrt(Rational rational){
-        return this._pow(rational._reverse());
+        Rational other = new Rational(rational);
+        return this._pow(other._reverse());
     }
     public Exponential _sqrt(Integer integer){
         return this._sqrt(new Rational(integer));

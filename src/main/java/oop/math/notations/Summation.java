@@ -21,8 +21,11 @@ public class Summation implements Notation, Sum_Layer {
 
     }
 
-    public Summation(Summation other){
-        this.add(other);
+    public Summation(Summation other) {
+        this.elements = new ArrayList<>();
+        for (Multiplication m : other.getElements()) {
+            this.elements.add(new Multiplication(m));
+        }
     }
 
     public Summation(Multiplication element) {
@@ -53,7 +56,8 @@ public class Summation implements Notation, Sum_Layer {
     }
 
     public Summation subt(Sum_Layer multiParam){
-        return this.add(multiParam.toSummation().reverse());
+        Summation other = new Summation(multiParam.toSummation());
+        return this.add(other.reverse());
     }
     public Summation subt(Integer integer) {
         return this.subt(new Exponential(integer));
