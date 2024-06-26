@@ -159,47 +159,91 @@ public class NumberSystem {
         return (HexadecimalNumber) this.convertToRadix(16); // downcasting
     }
 
+    public List<Integer> extendList(List<Integer> digits, int extend) {
+        digits = new ArrayList<>(digits);
+        Collections.reverse(digits);
+        while (digits.size() < extend) digits.add(0);
+        return digits;
+    }
+    
     public NumberSystem add(NumberSystem other) {
-        if (this.getRadix() != other.getRadix())
-            throw new IllegalArgumentException("Incompatible radix value.");
-        int decimal1 = (int) this.toSummation().result();
-        int decimal2 = (int) other.toSummation().result();
-        int result = decimal1 + decimal2;
-        this.setSign(result);
-        List<Integer> digitList = decimalToDigits(result, this.getRadix());
+        other = new NumberSystem(other);
+        if(this.getRadix() != other.getRadix()) throw new IllegalArgumentException("Incompatible radix value.");
+        int max = Math.max(this.getDigits().size(), other.getDigits().size()) + 1;
+
+        List<Integer> digitList1 = extendList(this.getDigits(), max);
+        List<Integer> digitList2 = extendList(other.getDigits(), max);
+        List<Integer> digitList = new ArrayList<>();
+
+        int carry = 0;
+        for (int i = 0; i < max; i++) {
+            //if(i == max - 1 && carry == -1) break;
+            int sum = carry;
+            sum += this.getSign() * digitList1.get(i);
+            sum += other.getSign() * digitList2.get(i);
+            if (sum < 0) {
+                sum += this.getRadix();
+                carry = -1; // borrow
+            } else {
+                carry = sum / this.getRadix(); // 1 or 0
+            }
+            digitList.add(Math.abs(sum % this.getRadix()));
+        }
+        this.setSign(carry); // if carry==0 then sign is positive
+        Collections.reverse(digitList);
         this.setDigits(digitList);
         return this;
     }
 
     public NumberSystem subt(NumberSystem other) {
         other = new NumberSystem(other);
-        return this.add(other.reverse());
+        other.reverse();
+        return this.add(other);
     }
 
     public NumberSystem mult(NumberSystem other) {
-        if (this.getRadix() != other.getRadix())
-            throw new IllegalArgumentException("Incompatible radix value.");
-        int decimal1 = (int) this.toSummation().result();
-        int decimal2 = (int) other.toSummation().result();
-        int result = decimal1 * decimal2;
-        this.setSign(result);
-        List<Integer> digitList = decimalToDigits(result, this.getRadix());
-        this.setDigits(digitList);
+        other = new NumberSystem(other);
+        if(this.getRadix() != other.getRadix()) throw new IllegalArgumentException("Incompatible radix value.");
+        NumberSystem summation = new NumberSystem("0", this.getRadix());
+        NumberSystem counter = new NumberSystem(other);
+        counter.setSign(+1);
+        while(!(counter.isZero())){
+            summation.add(this);
+            counter.subt(new NumberSystem("1", counter.getRadix()));
+        }
+        this.setDigits(summation.getDigits());
+        if(other.getSign() == -1) this.reverse();
+        return this;
+    }
+    
+    public NumberSystem divi(NumberSystem other) {
+        other = new NumberSystem(other);
+        if (this.getRadix() != other.getRadix()) throw new IllegalArgumentException("Incompatible radix value.");
+        if (other.isZero()) throw new IllegalArgumentException("Denominator cannot be zero.");
+        NumberSystem counter = new NumberSystem("0", other.getRadix());
+        NumberSystem absThis = new NumberSystem(this);
+        absThis.setSign(+1);
+        NumberSystem absNumber = new NumberSystem(other);
+        absNumber.setSign(+1);
+        while(absThis.isBiggerOrEqualDigits(absNumber)){
+            absThis.subt(absNumber);
+            counter.add(new NumberSystem("1", counter.getRadix()));
+        }
+        this.setDigits(counter.getDigits());
+        if(other.getSign() == -1) this.reverse();
         return this;
     }
 
-    public NumberSystem divi(NumberSystem other) {
-        if (this.getRadix() != other.getRadix())
-            throw new IllegalArgumentException("Incompatible radix value.");
-        if (other.isZero())
-            throw new IllegalArgumentException("Denominator cannot be zero.");
-        int decimal1 = (int) this.toSummation().result();
-        int decimal2 = (int) other.toSummation().result();
-        int result = decimal1 / decimal2;
-        this.setSign(result);
-        List<Integer> digitList = decimalToDigits(result, this.getRadix());
-        this.setDigits(digitList);
-        return this;
+    public Boolean isBiggerOrEqualDigits(NumberSystem other){
+        other = new NumberSystem(other);
+        if (this.getDigits().size() > other.getDigits().size()) return true;
+        if (this.getDigits().size() < other.getDigits().size()) return false;
+        // if sizes are equal
+        int i = -1;
+        for(int digit : this.getDigits()){
+            if(digit != other.getDigits().get(++i)) break;
+        }
+        return (this.getDigits().get(i) >= other.getDigits().get(i));
     }
 
     public String toString() {
