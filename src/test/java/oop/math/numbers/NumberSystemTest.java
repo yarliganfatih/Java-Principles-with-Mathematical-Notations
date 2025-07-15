@@ -12,6 +12,7 @@ import oop.math.numbers.numberSystems.HexadecimalNumber;
 import oop.math.numbers.numberSystems.OctalNumber;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NumberSystemTest {
@@ -42,16 +43,16 @@ public class NumberSystemTest {
     @Test
     public void testSetDigits() {
         NumberSystem ns = new NumberSystem("-12", 10);
-        ns.setDigits(new ArrayList<>(List.of(1, 2, 3)));
-        assertEquals(new ArrayList<>(List.of(1, 2, 3)), ns.getDigits());
+        ns.setDigits(new ArrayList<>(Arrays.asList(1, 2, 3)));
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2, 3)), ns.getDigits());
 
         assertThrows(IllegalArgumentException.class, () -> ns.setDigits(new ArrayList<>()));
 
-        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(List.of(-1, 2, 3))));
+        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(Arrays.asList(-1, 2, 3))));
 
         assertThrows(NumberFormatException.class, () -> new NumberSystem("981", 8));
 
-        ns.setDigits(new ArrayList<>(List.of(0)));
+        ns.setDigits(new ArrayList<>(Arrays.asList(0)));
         assertEquals(true, ns.isZero());
         assertEquals(+1, ns.getSign());
     }
@@ -60,14 +61,14 @@ public class NumberSystemTest {
     public void testDefaultConstructor() {
         NumberSystem ns = new NumberSystem();
         assertEquals(10, ns.getRadix());
-        assertEquals(new ArrayList<>(List.of(0)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(0)), ns.getDigits());
         assertEquals("0", ns.toString());
     }
 
     @Test
     public void testConstructorWithRadix() {
         NumberSystem ns = new NumberSystem(10);
-        assertEquals(new ArrayList<>(List.of(0)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(0)), ns.getDigits());
         assertEquals(10, ns.getRadix());
         assertEquals("0", ns.toString());
         
@@ -77,13 +78,13 @@ public class NumberSystemTest {
         
         assertThrows(IllegalArgumentException.class, () -> new NumberSystem("0", 1));
 
-        assertThrows(IllegalArgumentException.class, () -> new NumberSystem(+1, new ArrayList<>(List.of(0)), 1));
+        assertThrows(IllegalArgumentException.class, () -> new NumberSystem(+1, new ArrayList<>(Arrays.asList(0)), 1));
     }
 
     @Test
     public void testConstructorWithNumber() {
         NumberSystem ns = new NumberSystem(123, 10);
-        assertEquals(new ArrayList<>(List.of(1, 2, 3)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2, 3)), ns.getDigits());
         assertEquals(10, ns.getRadix());
         assertEquals("123", ns.toString());
     }
@@ -91,13 +92,13 @@ public class NumberSystemTest {
     @Test
     public void testConstructorWithString() {
         NumberSystem ns = new NumberSystem("101", 2);
-        assertEquals(new ArrayList<>(List.of(1, 0, 1)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(1, 0, 1)), ns.getDigits());
         assertEquals(+1, ns.getSign());
         assertEquals(2, ns.getRadix());
         assertEquals("101_2", ns.toString());
 
         ns = new NumberSystem("-25", 10);
-        assertEquals(new ArrayList<>(List.of(2, 5)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(2, 5)), ns.getDigits());
         assertEquals(-1, ns.getSign());
         assertEquals(10, ns.getRadix());
         assertEquals("-25", ns.toString());
@@ -108,7 +109,7 @@ public class NumberSystemTest {
 
     @Test
     public void testConstructorWithDigitsAndRadix() {
-        List<Integer> digits = new ArrayList<>(List.of(1, 0, 1));
+        List<Integer> digits = new ArrayList<>(Arrays.asList(1, 0, 1));
         NumberSystem ns = new NumberSystem(1, digits, 2);
         assertEquals(digits, ns.getDigits());
         assertEquals(+1, ns.getSign());
@@ -248,8 +249,8 @@ public class NumberSystemTest {
     @Test
     public void testStringToDigits() {
         NumberSystem ns = new NumberSystem();
-        assertEquals(new ArrayList<>(List.of(1, 2)), ns.stringToDigits("12"));
-        assertEquals(new ArrayList<>(List.of(1, 2, 10)), ns.stringToDigits("12A"));
-        assertEquals(new ArrayList<>(List.of(11, 2, 10)), ns.stringToDigits("b2A"));
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2)), ns.stringToDigits("12"));
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2, 10)), ns.stringToDigits("12A"));
+        assertEquals(new ArrayList<>(Arrays.asList(11, 2, 10)), ns.stringToDigits("b2A"));
     }
 }

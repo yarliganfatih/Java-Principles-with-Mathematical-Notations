@@ -1,6 +1,7 @@
 package oop.math.numbers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ import oop.math.numbers.numberSystems.OctalNumber;
 
 public class NumberSystem {
     private int sign = +1;
-    private List<Integer> digits = new ArrayList<>(List.of(0));
+    private List<Integer> digits = new ArrayList<>(Arrays.asList(0));
     protected final int radix;
 
     public int getSign() {

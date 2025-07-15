@@ -9,6 +9,7 @@ import oop.math.notations.Summation;
 import oop.math.numbers.NumberSystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DecimalNumberTest {
@@ -39,16 +40,16 @@ public class DecimalNumberTest {
     @Test
     public void testSetDigits() {
         DecimalNumber ns = new DecimalNumber("-12");
-        ns.setDigits(new ArrayList<>(List.of(1, 2, 3)));
-        assertEquals(new ArrayList<>(List.of(1, 2, 3)), ns.getDigits());
+        ns.setDigits(new ArrayList<>(Arrays.asList(1, 2, 3)));
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2, 3)), ns.getDigits());
 
         assertThrows(IllegalArgumentException.class, () -> ns.setDigits(new ArrayList<>()));
 
-        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(List.of(-1, 2, 3))));
+        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(Arrays.asList(-1, 2, 3))));
 
-        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(List.of(1, 11, 3))));
+        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(Arrays.asList(1, 11, 3))));
 
-        ns.setDigits(new ArrayList<>(List.of(0)));
+        ns.setDigits(new ArrayList<>(Arrays.asList(0)));
         assertEquals(true, ns.isZero());
         assertEquals(+1, ns.getSign());
     }
@@ -57,14 +58,14 @@ public class DecimalNumberTest {
     public void testDefaultConstructor() {
         DecimalNumber ns = new DecimalNumber();
         assertEquals(10, ns.getRadix());
-        assertEquals(new ArrayList<>(List.of(0)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(0)), ns.getDigits());
         assertEquals("0", ns.toString());
     }
 
     @Test
     public void testConstructorWithNumber() {
         DecimalNumber ns = new DecimalNumber(123);
-        assertEquals(new ArrayList<>(List.of(1, 2, 3)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(1, 2, 3)), ns.getDigits());
         assertEquals(10, ns.getRadix());
         assertEquals("123", ns.toString());
     }
@@ -72,13 +73,13 @@ public class DecimalNumberTest {
     @Test
     public void testConstructorWithString() {
         DecimalNumber ns = new DecimalNumber("101");
-        assertEquals(new ArrayList<>(List.of(1, 0, 1)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(1, 0, 1)), ns.getDigits());
         assertEquals(+1, ns.getSign());
         assertEquals(10, ns.getRadix());
         assertEquals("101", ns.toString());
 
         ns = new DecimalNumber("-25");
-        assertEquals(new ArrayList<>(List.of(2, 5)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(2, 5)), ns.getDigits());
         assertEquals(-1, ns.getSign());
         assertEquals(10, ns.getRadix());
         assertEquals("-25", ns.toString());
@@ -89,7 +90,7 @@ public class DecimalNumberTest {
 
     @Test
     public void testConstructorWithDigitsAndRadix() {
-        List<Integer> digits = new ArrayList<>(List.of(1, 0, 1));
+        List<Integer> digits = new ArrayList<>(Arrays.asList(1, 0, 1));
         DecimalNumber ns = new DecimalNumber(1, digits);
         assertEquals(digits, ns.getDigits());
         assertEquals(+1, ns.getSign());

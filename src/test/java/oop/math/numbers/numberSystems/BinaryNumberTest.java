@@ -9,6 +9,7 @@ import oop.math.notations.Summation;
 import oop.math.numbers.NumberSystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinaryNumberTest {
@@ -39,16 +40,16 @@ public class BinaryNumberTest {
     @Test
     public void testSetDigits() {
         BinaryNumber ns = new BinaryNumber("-10");
-        ns.setDigits(new ArrayList<>(List.of(1, 0, 1)));
-        assertEquals(new ArrayList<>(List.of(1, 0, 1)), ns.getDigits());
+        ns.setDigits(new ArrayList<>(Arrays.asList(1, 0, 1)));
+        assertEquals(new ArrayList<>(Arrays.asList(1, 0, 1)), ns.getDigits());
 
         assertThrows(IllegalArgumentException.class, () -> ns.setDigits(new ArrayList<>()));
 
-        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(List.of(-1, 1, 0))));
+        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(Arrays.asList(-1, 1, 0))));
 
-        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(List.of(1, 3, 0))));
+        assertThrows(NumberFormatException.class, () -> ns.setDigits(new ArrayList<>(Arrays.asList(1, 3, 0))));
 
-        ns.setDigits(new ArrayList<>(List.of(0)));
+        ns.setDigits(new ArrayList<>(Arrays.asList(0)));
         assertEquals(true, ns.isZero());
         assertEquals(+1, ns.getSign());
     }
@@ -57,14 +58,14 @@ public class BinaryNumberTest {
     public void testDefaultConstructor() {
         BinaryNumber ns = new BinaryNumber();
         assertEquals(2, ns.getRadix());
-        assertEquals(new ArrayList<>(List.of(0)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(0)), ns.getDigits());
         assertEquals("0_2", ns.toString());
     }
 
     @Test
     public void testConstructorWithNumber() {
         BinaryNumber ns = new BinaryNumber(101);
-        assertEquals(new ArrayList<>(List.of(1, 0, 1)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(1, 0, 1)), ns.getDigits());
         assertEquals(2, ns.getRadix());
         assertEquals("101_2", ns.toString());
     }
@@ -72,13 +73,13 @@ public class BinaryNumberTest {
     @Test
     public void testConstructorWithString() {
         BinaryNumber ns = new BinaryNumber("101");
-        assertEquals(new ArrayList<>(List.of(1, 0, 1)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(1, 0, 1)), ns.getDigits());
         assertEquals(+1, ns.getSign());
         assertEquals(2, ns.getRadix());
         assertEquals("101_2", ns.toString());
 
         ns = new BinaryNumber("-10");
-        assertEquals(new ArrayList<>(List.of(1, 0)), ns.getDigits());
+        assertEquals(new ArrayList<>(Arrays.asList(1, 0)), ns.getDigits());
         assertEquals(-1, ns.getSign());
         assertEquals(2, ns.getRadix());
         assertEquals("-10_2", ns.toString());
@@ -89,7 +90,7 @@ public class BinaryNumberTest {
 
     @Test
     public void testConstructorWithDigitsAndRadix() {
-        List<Integer> digits = new ArrayList<>(List.of(1, 0, 1));
+        List<Integer> digits = new ArrayList<>(Arrays.asList(1, 0, 1));
         BinaryNumber ns = new BinaryNumber(1, digits);
         assertEquals(digits, ns.getDigits());
         assertEquals(+1, ns.getSign());
