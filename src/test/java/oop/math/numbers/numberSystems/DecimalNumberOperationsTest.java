@@ -1,9 +1,12 @@
 package oop.math.numbers.numberSystems;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import oop.math.numbers.NumberSystem;
 
@@ -21,39 +24,21 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns2 = new DecimalNumber("5");
         ns1.add(ns2);
         assertEquals("5", ns2.toString());
-        assertEquals("15", ns1.toString());
+        assertNotEquals("10", ns1.toString());
     }
 
-    @Test
-    public void testAdd() {
-        DecimalNumber ns1 = new DecimalNumber("10");
-        DecimalNumber ns2 = new DecimalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 15",
+            "10, -5, 5",
+            "-10, -5, -15",
+            "-10, 5, -5"
+    })
+    public void testAdd(String val1, String val2, String expected) {
+        DecimalNumber ns1 = new DecimalNumber(val1);
+        DecimalNumber ns2 = new DecimalNumber(val2);
         ns1.add(ns2);
-        assertEquals("15", ns1.toString());
-    }
-
-    @Test
-    public void testAddNegative() {
-        DecimalNumber ns1 = new DecimalNumber("10");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.add(ns2);
-        assertEquals("5", ns1.toString());
-    }
-
-    @Test
-    public void testAddBothNegative() {
-        DecimalNumber ns1 = new DecimalNumber("-10");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.add(ns2);
-        assertEquals("-15", ns1.toString());
-    }
-
-    @Test
-    public void testAddMixed() {
-        DecimalNumber ns1 = new DecimalNumber("-10");
-        DecimalNumber ns2 = new DecimalNumber("5");
-        ns1.add(ns2);
-        assertEquals("-5", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -69,39 +54,21 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns2 = new DecimalNumber("5");
         ns1.subt(ns2);
         assertEquals("5", ns2.toString());
-        assertEquals("5", ns1.toString());
+        assertNotEquals("10", ns1.toString());
     }
 
-    @Test
-    public void testSubt() {
-        DecimalNumber ns1 = new DecimalNumber("10");
-        DecimalNumber ns2 = new DecimalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 5",
+            "10, -5, 15",
+            "-10, -5, -5",
+            "-10, 5, -15"
+    })
+    public void testSubt(String val1, String val2, String expected) {
+        DecimalNumber ns1 = new DecimalNumber(val1);
+        DecimalNumber ns2 = new DecimalNumber(val2);
         ns1.subt(ns2);
-        assertEquals("5", ns1.toString());
-    }
-
-    @Test
-    public void testSubtNegative() {
-        DecimalNumber ns1 = new DecimalNumber("10");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.subt(ns2);
-        assertEquals("15", ns1.toString());
-    }
-
-    @Test
-    public void testSubtBothNegative() {
-        DecimalNumber ns1 = new DecimalNumber("-10");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.subt(ns2);
-        assertEquals("-5", ns1.toString());
-    }
-
-    @Test
-    public void testSubtMixed() {
-        DecimalNumber ns1 = new DecimalNumber("-10");
-        DecimalNumber ns2 = new DecimalNumber("5");
-        ns1.subt(ns2);
-        assertEquals("-15", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -117,39 +84,21 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns2 = new DecimalNumber("5");
         ns1.mult(ns2);
         assertEquals("5", ns2.toString());
-        assertEquals("50", ns1.toString());
+        assertNotEquals("10", ns1.toString());
     }
 
-    @Test
-    public void testMult() {
-        DecimalNumber ns1 = new DecimalNumber("10");
-        DecimalNumber ns2 = new DecimalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 50",
+            "10, -5, -50",
+            "-10, 5, -50",
+            "-10, -5, 50"
+    })
+    public void testMult(String val1, String val2, String expected) {
+        DecimalNumber ns1 = new DecimalNumber(val1);
+        DecimalNumber ns2 = new DecimalNumber(val2);
         ns1.mult(ns2);
-        assertEquals("50", ns1.toString());
-    }
-
-    @Test
-    public void testMultNegative() {
-        DecimalNumber ns1 = new DecimalNumber("10");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.mult(ns2);
-        assertEquals("-50", ns1.toString());
-    }
-
-    @Test
-    public void testMultMixed() {
-        DecimalNumber ns1 = new DecimalNumber("-10");
-        DecimalNumber ns2 = new DecimalNumber("5");
-        ns1.mult(ns2);
-        assertEquals("-50", ns1.toString());
-    }
-
-    @Test
-    public void testMultBothNegative() {
-        DecimalNumber ns1 = new DecimalNumber("-10");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.mult(ns2);
-        assertEquals("50", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -172,54 +121,22 @@ public class DecimalNumberOperationsTest {
         DecimalNumber ns2 = new DecimalNumber("50");
         ns1.divi(ns2);
         assertEquals("50", ns2.toString());
-        assertEquals("2", ns1.toString());
+        assertNotEquals("100", ns1.toString());
     }
 
-    @Test
-    public void testDivi() {
-        DecimalNumber ns1 = new DecimalNumber("100");
-        DecimalNumber ns2 = new DecimalNumber("50");
+    @ParameterizedTest
+    @CsvSource({
+            "100, 50, 2",
+            "11, 5, 2",
+            "11, -5, -2",
+            "-11, 5, -2",
+            "-11, -5, 2",
+            "-11, 50, 0"
+    })
+    public void testDivi(String val1, String val2, String expected) {
+        DecimalNumber ns1 = new DecimalNumber(val1);
+        DecimalNumber ns2 = new DecimalNumber(val2);
         ns1.divi(ns2);
-        assertEquals("2", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRemainder() {
-        DecimalNumber ns1 = new DecimalNumber("11");
-        DecimalNumber ns2 = new DecimalNumber("5");
-        ns1.divi(ns2);
-        assertEquals("2", ns1.toString());
-    }
-
-    @Test
-    public void testDiviNegative() {
-        DecimalNumber ns1 = new DecimalNumber("11");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.divi(ns2);
-        assertEquals("-2", ns1.toString());
-    }
-
-    @Test
-    public void testDiviMixed() {
-        DecimalNumber ns1 = new DecimalNumber("-11");
-        DecimalNumber ns2 = new DecimalNumber("5");
-        ns1.divi(ns2);
-        assertEquals("-2", ns1.toString());
-    }
-
-    @Test
-    public void testDiviBothNegative() {
-        DecimalNumber ns1 = new DecimalNumber("-11");
-        DecimalNumber ns2 = new DecimalNumber("-5");
-        ns1.divi(ns2);
-        assertEquals("2", ns1.toString());
-    }
-
-    @Test
-    public void testDiviSmallDivisor() {
-        DecimalNumber ns1 = new DecimalNumber("-11");
-        DecimalNumber ns2 = new DecimalNumber("50");
-        ns1.divi(ns2);
-        assertEquals("0", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 }

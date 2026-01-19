@@ -1,9 +1,12 @@
 package oop.math.numbers.numberSystems;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import oop.math.numbers.NumberSystem;
 
@@ -21,39 +24,21 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
         ns1.add(ns2);
         assertEquals("5_16", ns2.toString());
-        assertEquals("15_16", ns1.toString());
+        assertNotEquals("10_16", ns1.toString());
     }
 
-    @Test
-    public void testAdd() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 15_16",
+            "10, -5, b_16",
+            "-10, -5, -15_16",
+            "-10, 5, -b_16"
+    })
+    public void testAdd(String val1, String val2, String expected) {
+        HexadecimalNumber ns1 = new HexadecimalNumber(val1);
+        HexadecimalNumber ns2 = new HexadecimalNumber(val2);
         ns1.add(ns2);
-        assertEquals("15_16", ns1.toString());
-    }
-
-    @Test
-    public void testAddNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-5");
-        ns1.add(ns2);
-        assertEquals("b_16", ns1.toString());
-    }
-
-    @Test
-    public void testAddBothNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-5");
-        ns1.add(ns2);
-        assertEquals("-15_16", ns1.toString());
-    }
-
-    @Test
-    public void testAddMixed() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("5");
-        ns1.add(ns2);
-        assertEquals("-b_16", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -69,39 +54,21 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
         ns1.subt(ns2);
         assertEquals("5_16", ns2.toString());
-        assertEquals("b_16", ns1.toString());
+        assertNotEquals("10_16", ns1.toString());
     }
 
-    @Test
-    public void testSubt() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, b_16",
+            "10, -5, 15_16",
+            "-10, -5, -b_16",
+            "-10, 5, -15_16"
+    })
+    public void testSubt(String val1, String val2, String expected) {
+        HexadecimalNumber ns1 = new HexadecimalNumber(val1);
+        HexadecimalNumber ns2 = new HexadecimalNumber(val2);
         ns1.subt(ns2);
-        assertEquals("b_16", ns1.toString());
-    }
-
-    @Test
-    public void testSubtNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-5");
-        ns1.subt(ns2);
-        assertEquals("15_16", ns1.toString());
-    }
-
-    @Test
-    public void testSubtBothNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-5");
-        ns1.subt(ns2);
-        assertEquals("-b_16", ns1.toString());
-    }
-
-    @Test
-    public void testSubtMixed() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("5");
-        ns1.subt(ns2);
-        assertEquals("-15_16", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -117,39 +84,21 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns2 = new HexadecimalNumber("5");
         ns1.mult(ns2);
         assertEquals("5_16", ns2.toString());
-        assertEquals("50_16", ns1.toString());
+        assertNotEquals("10_16", ns1.toString());
     }
 
-    @Test
-    public void testMult() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 50_16",
+            "10, -5, -50_16",
+            "-10, 5, -50_16",
+            "-10, -5, 50_16"
+    })
+    public void testMult(String val1, String val2, String expected) {
+        HexadecimalNumber ns1 = new HexadecimalNumber(val1);
+        HexadecimalNumber ns2 = new HexadecimalNumber(val2);
         ns1.mult(ns2);
-        assertEquals("50_16", ns1.toString());
-    }
-
-    @Test
-    public void testMultNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-5");
-        ns1.mult(ns2);
-        assertEquals("-50_16", ns1.toString());
-    }
-
-    @Test
-    public void testMultMixed() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("5");
-        ns1.mult(ns2);
-        assertEquals("-50_16", ns1.toString());
-    }
-
-    @Test
-    public void testMultBothNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-10");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-5");
-        ns1.mult(ns2);
-        assertEquals("50_16", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -172,54 +121,22 @@ public class HexadecimalNumberOperationsTest {
         HexadecimalNumber ns2 = new HexadecimalNumber("10");
         ns1.divi(ns2);
         assertEquals("10_16", ns2.toString());
-        assertEquals("10_16", ns1.toString());
+        assertNotEquals("100_16", ns1.toString());
     }
 
-    @Test
-    public void testDivi() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("100");
-        HexadecimalNumber ns2 = new HexadecimalNumber("10");
+    @ParameterizedTest
+    @CsvSource({
+            "100, 10, 10_16",
+            "11, 2, 8_16",
+            "11, -2, -8_16",
+            "-11, 2, -8_16",
+            "-11, -2, 8_16",
+            "-11, 20, 0_16"
+    })
+    public void testDivi(String val1, String val2, String expected) {
+        HexadecimalNumber ns1 = new HexadecimalNumber(val1);
+        HexadecimalNumber ns2 = new HexadecimalNumber(val2);
         ns1.divi(ns2);
-        assertEquals("10_16", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRemainder() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("11");
-        HexadecimalNumber ns2 = new HexadecimalNumber("2");
-        ns1.divi(ns2);
-        assertEquals("8_16", ns1.toString());
-    }
-
-    @Test
-    public void testDiviNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("11");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-2");
-        ns1.divi(ns2);
-        assertEquals("-8_16", ns1.toString());
-    }
-
-    @Test
-    public void testDiviMixed() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-11");
-        HexadecimalNumber ns2 = new HexadecimalNumber("2");
-        ns1.divi(ns2);
-        assertEquals("-8_16", ns1.toString());
-    }
-
-    @Test
-    public void testDiviBothNegative() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-11");
-        HexadecimalNumber ns2 = new HexadecimalNumber("-2");
-        ns1.divi(ns2);
-        assertEquals("8_16", ns1.toString());
-    }
-
-    @Test
-    public void testDiviSmallDivisor() {
-        HexadecimalNumber ns1 = new HexadecimalNumber("-11");
-        HexadecimalNumber ns2 = new HexadecimalNumber("20");
-        ns1.divi(ns2);
-        assertEquals("0_16", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 }

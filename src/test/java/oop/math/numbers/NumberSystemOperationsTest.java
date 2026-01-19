@@ -1,9 +1,12 @@
 package oop.math.numbers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class NumberSystemOperationsTest {
     @Test
@@ -19,15 +22,24 @@ public class NumberSystemOperationsTest {
         NumberSystem ns2 = new NumberSystem("5", 10);
         ns1.add(ns2);
         assertEquals("5", ns2.toString());
-        assertEquals("15", ns1.toString());
+        assertNotEquals("10", ns1.toString());
     }
 
-    @Test
-    public void testAddRadix10() {
-        NumberSystem ns1 = new NumberSystem("10", 10);
-        NumberSystem ns2 = new NumberSystem("5", 10);
+    @ParameterizedTest
+    @CsvSource({
+            "10, 10, 5, 10, 15",
+            "10, 3, 2, 3, 12_3",
+            "A, 15, 5, 15, 10_15",
+            "1a, 36, 5, 36, 1f_36",
+            "10, 3, -2, 3, 1_3",
+            "A, 15, -5, 15, 5_15",
+            "1a, 36, -5, 36, 15_36"
+    })
+    public void testAdd(String val1, int radix1, String val2, int radix2, String expected) {
+        NumberSystem ns1 = new NumberSystem(val1, radix1);
+        NumberSystem ns2 = new NumberSystem(val2, radix2);
         ns1.add(ns2);
-        assertEquals("15", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -43,15 +55,21 @@ public class NumberSystemOperationsTest {
         NumberSystem ns2 = new NumberSystem("5", 10);
         ns1.subt(ns2);
         assertEquals("5", ns2.toString());
-        assertEquals("5", ns1.toString());
+        assertNotEquals("10", ns1.toString());
     }
 
-    @Test
-    public void testSubtRadix10() {
-        NumberSystem ns1 = new NumberSystem("10", 10);
-        NumberSystem ns2 = new NumberSystem("5", 10);
+    @ParameterizedTest
+    @CsvSource({
+            "10, 10, 5, 10, 5",
+            "10, 3, 2, 3, 1_3",
+            "A, 15, 5, 15, 5_15",
+            "1a, 36, 5, 36, 15_36"
+    })
+    public void testSubt(String val1, int radix1, String val2, int radix2, String expected) {
+        NumberSystem ns1 = new NumberSystem(val1, radix1);
+        NumberSystem ns2 = new NumberSystem(val2, radix2);
         ns1.subt(ns2);
-        assertEquals("5", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -67,15 +85,24 @@ public class NumberSystemOperationsTest {
         NumberSystem ns2 = new NumberSystem("5", 10);
         ns1.mult(ns2);
         assertEquals("5", ns2.toString());
-        assertEquals("50", ns1.toString());
+        assertNotEquals("10", ns1.toString());
     }
 
-    @Test
-    public void testMultRadix10() {
-        NumberSystem ns1 = new NumberSystem("10", 10);
-        NumberSystem ns2 = new NumberSystem("5", 10);
+    @ParameterizedTest
+    @CsvSource({
+            "10, 10, 5, 10, 50",
+            "10, 3, 2, 3, 20_3",
+            "A, 15, 5, 15, 35_15",
+            "1a, 36, 5, 36, 6e_36",
+            "10, 3, -2, 3, -20_3",
+            "A, 15, -5, 15, -35_15",
+            "1a, 36, -5, 36, -6e_36"
+    })
+    public void testMult(String val1, int radix1, String val2, int radix2, String expected) {
+        NumberSystem ns1 = new NumberSystem(val1, radix1);
+        NumberSystem ns2 = new NumberSystem(val2, radix2);
         ns1.mult(ns2);
-        assertEquals("50", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -98,182 +125,24 @@ public class NumberSystemOperationsTest {
         NumberSystem ns2 = new NumberSystem("50", 10);
         ns1.divi(ns2);
         assertEquals("50", ns2.toString());
-        assertEquals("2", ns1.toString());
+        assertNotEquals("100", ns1.toString());
     }
 
-    @Test
-    public void testDiviRadix10() {
-        NumberSystem ns1 = new NumberSystem("100", 10);
-        NumberSystem ns2 = new NumberSystem("50", 10);
+    @ParameterizedTest
+    @CsvSource({
+            "100, 10, 50, 10, 2",
+            "10, 3, 2, 3, 1_3",
+            "A, 15, 5, 15, 2_15",
+            "1a, 36, 5, 36, 9_36",
+            "10, 3, -2, 3, -1_3",
+            "A, 15, -5, 15, -2_15",
+            "1a, 36, -5, 36, -9_36"
+    })
+    public void testDivi(String val1, int radix1, String val2, int radix2, String expected) {
+        NumberSystem ns1 = new NumberSystem(val1, radix1);
+        NumberSystem ns2 = new NumberSystem(val2, radix2);
         ns1.divi(ns2);
-        assertEquals("2", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
-    @Test
-    public void testAddRadix3() {
-        NumberSystem ns1 = new NumberSystem("10", 3);
-        NumberSystem ns2 = new NumberSystem("2", 3);
-        ns1.add(ns2);
-        assertEquals("12_3", ns1.toString());
-    }
-
-    @Test
-    public void testAddRadix15() {
-        NumberSystem ns1 = new NumberSystem("A", 15);
-        NumberSystem ns2 = new NumberSystem("5", 15);
-        ns1.add(ns2);
-        assertEquals("10_15", ns1.toString());
-    }
-
-    @Test
-    public void testAddRadix36() {
-        NumberSystem ns1 = new NumberSystem("1a", 36);
-        NumberSystem ns2 = new NumberSystem("5", 36);
-        ns1.add(ns2);
-        assertEquals("1f_36", ns1.toString());
-    }
-
-    @Test
-    public void testSubtRadix3() {
-        NumberSystem ns1 = new NumberSystem("10", 3);
-        NumberSystem ns2 = new NumberSystem("2", 3);
-        ns1.subt(ns2);
-        assertEquals("1_3", ns1.toString());
-    }
-
-    @Test
-    public void testSubtRadix15() {
-        NumberSystem ns1 = new NumberSystem("A", 15);
-        NumberSystem ns2 = new NumberSystem("5", 15);
-        ns1.subt(ns2);
-        assertEquals("5_15", ns1.toString());
-    }
-
-    @Test
-    public void testSubtRadix36() {
-        NumberSystem ns1 = new NumberSystem("1a", 36);
-        NumberSystem ns2 = new NumberSystem("5", 36);
-        ns1.subt(ns2);
-        assertEquals("15_36", ns1.toString());
-    }
-
-    @Test
-    public void testMultRadix3() {
-        NumberSystem ns1 = new NumberSystem("10", 3);
-        NumberSystem ns2 = new NumberSystem("2", 3);
-        ns1.mult(ns2);
-        assertEquals("20_3", ns1.toString());
-    }
-
-    @Test
-    public void testMultRadix15() {
-        NumberSystem ns1 = new NumberSystem("A", 15);
-        NumberSystem ns2 = new NumberSystem("5", 15);
-        ns1.mult(ns2);
-        assertEquals("35_15", ns1.toString());
-    }
-
-    @Test
-    public void testMultRadix36() {
-        NumberSystem ns1 = new NumberSystem("1a", 36);
-        NumberSystem ns2 = new NumberSystem("5", 36);
-        ns1.mult(ns2);
-        assertEquals("6e_36", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRadix3() {
-        NumberSystem ns1 = new NumberSystem("10", 3);
-        NumberSystem ns2 = new NumberSystem("2", 3);
-        ns1.divi(ns2);
-        assertEquals("1_3", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRadix15() {
-        NumberSystem ns1 = new NumberSystem("A", 15);
-        NumberSystem ns2 = new NumberSystem("5", 15);
-        ns1.divi(ns2);
-        assertEquals("2_15", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRadix36() {
-        NumberSystem ns1 = new NumberSystem("1a", 36);
-        NumberSystem ns2 = new NumberSystem("5", 36);
-        ns1.divi(ns2);
-        assertEquals("9_36", ns1.toString());
-    }
-
-    @Test
-    public void testAddRadix3Negative() {
-        NumberSystem ns1 = new NumberSystem("10", 3);
-        NumberSystem ns2 = new NumberSystem("-2", 3);
-        ns1.add(ns2);
-        assertEquals("1_3", ns1.toString());
-    }
-
-    @Test
-    public void testAddRadix15Negative() {
-        NumberSystem ns1 = new NumberSystem("A", 15);
-        NumberSystem ns2 = new NumberSystem("-5", 15);
-        ns1.add(ns2);
-        assertEquals("5_15", ns1.toString());
-    }
-
-    @Test
-    public void testAddRadix36Negative() {
-        NumberSystem ns1 = new NumberSystem("1a", 36);
-        NumberSystem ns2 = new NumberSystem("-5", 36);
-        ns1.add(ns2);
-        assertEquals("15_36", ns1.toString());
-    }
-
-    @Test
-    public void testMultRadix3Negative() {
-        NumberSystem ns1 = new NumberSystem("10", 3);
-        NumberSystem ns2 = new NumberSystem("-2", 3);
-        ns1.mult(ns2);
-        assertEquals("-20_3", ns1.toString());
-    }
-
-    @Test
-    public void testMultRadix15Negative() {
-        NumberSystem ns1 = new NumberSystem("A", 15);
-        NumberSystem ns2 = new NumberSystem("-5", 15);
-        ns1.mult(ns2);
-        assertEquals("-35_15", ns1.toString());
-    }
-
-    @Test
-    public void testMultRadix36Negative() {
-        NumberSystem ns1 = new NumberSystem("1a", 36);
-        NumberSystem ns2 = new NumberSystem("-5", 36);
-        ns1.mult(ns2);
-        assertEquals("-6e_36", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRadix3Negative() {
-        NumberSystem ns1 = new NumberSystem("10", 3);
-        NumberSystem ns2 = new NumberSystem("-2", 3);
-        ns1.divi(ns2);
-        assertEquals("-1_3", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRadix15Negative() {
-        NumberSystem ns1 = new NumberSystem("A", 15);
-        NumberSystem ns2 = new NumberSystem("-5", 15);
-        ns1.divi(ns2);
-        assertEquals("-2_15", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRadix36Negative() {
-        NumberSystem ns1 = new NumberSystem("1a", 36);
-        NumberSystem ns2 = new NumberSystem("-5", 36);
-        ns1.divi(ns2);
-        assertEquals("-9_36", ns1.toString());
-    }
 }

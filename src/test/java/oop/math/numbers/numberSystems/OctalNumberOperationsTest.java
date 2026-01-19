@@ -1,9 +1,12 @@
 package oop.math.numbers.numberSystems;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import oop.math.numbers.NumberSystem;
 
@@ -21,39 +24,21 @@ public class OctalNumberOperationsTest {
         OctalNumber ns2 = new OctalNumber("5");
         ns1.add(ns2);
         assertEquals("5_8", ns2.toString());
-        assertEquals("15_8", ns1.toString());
+        assertNotEquals("10_8", ns1.toString());
     }
 
-    @Test
-    public void testAdd() {
-        OctalNumber ns1 = new OctalNumber("10");
-        OctalNumber ns2 = new OctalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 15_8",
+            "10, -5, 3_8",
+            "-10, -5, -15_8",
+            "-10, 5, -3_8"
+    })
+    public void testAdd(String val1, String val2, String expected) {
+        OctalNumber ns1 = new OctalNumber(val1);
+        OctalNumber ns2 = new OctalNumber(val2);
         ns1.add(ns2);
-        assertEquals("15_8", ns1.toString());
-    }
-
-    @Test
-    public void testAddNegative() {
-        OctalNumber ns1 = new OctalNumber("10");
-        OctalNumber ns2 = new OctalNumber("-5");
-        ns1.add(ns2);
-        assertEquals("3_8", ns1.toString());
-    }
-
-    @Test
-    public void testAddBothNegative() {
-        OctalNumber ns1 = new OctalNumber("-10");
-        OctalNumber ns2 = new OctalNumber("-5");
-        ns1.add(ns2);
-        assertEquals("-15_8", ns1.toString());
-    }
-
-    @Test
-    public void testAddMixed() {
-        OctalNumber ns1 = new OctalNumber("-10");
-        OctalNumber ns2 = new OctalNumber("5");
-        ns1.add(ns2);
-        assertEquals("-3_8", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -69,39 +54,21 @@ public class OctalNumberOperationsTest {
         OctalNumber ns2 = new OctalNumber("5");
         ns1.subt(ns2);
         assertEquals("5_8", ns2.toString());
-        assertEquals("3_8", ns1.toString());
+        assertNotEquals("10_8", ns1.toString());
     }
 
-    @Test
-    public void testSubt() {
-        OctalNumber ns1 = new OctalNumber("10");
-        OctalNumber ns2 = new OctalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 3_8",
+            "10, -5, 15_8",
+            "-10, -5, -3_8",
+            "-10, 5, -15_8"
+    })
+    public void testSubt(String val1, String val2, String expected) {
+        OctalNumber ns1 = new OctalNumber(val1);
+        OctalNumber ns2 = new OctalNumber(val2);
         ns1.subt(ns2);
-        assertEquals("3_8", ns1.toString());
-    }
-
-    @Test
-    public void testSubtNegative() {
-        OctalNumber ns1 = new OctalNumber("10");
-        OctalNumber ns2 = new OctalNumber("-5");
-        ns1.subt(ns2);
-        assertEquals("15_8", ns1.toString());
-    }
-
-    @Test
-    public void testSubtBothNegative() {
-        OctalNumber ns1 = new OctalNumber("-10");
-        OctalNumber ns2 = new OctalNumber("-5");
-        ns1.subt(ns2);
-        assertEquals("-3_8", ns1.toString());
-    }
-
-    @Test
-    public void testSubtMixed() {
-        OctalNumber ns1 = new OctalNumber("-10");
-        OctalNumber ns2 = new OctalNumber("5");
-        ns1.subt(ns2);
-        assertEquals("-15_8", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -117,39 +84,21 @@ public class OctalNumberOperationsTest {
         OctalNumber ns2 = new OctalNumber("5");
         ns1.mult(ns2);
         assertEquals("5_8", ns2.toString());
-        assertEquals("50_8", ns1.toString());
+        assertNotEquals("10_8", ns1.toString());
     }
 
-    @Test
-    public void testMult() {
-        OctalNumber ns1 = new OctalNumber("10");
-        OctalNumber ns2 = new OctalNumber("5");
+    @ParameterizedTest
+    @CsvSource({
+            "10, 5, 50_8",
+            "10, -5, -50_8",
+            "-10, 5, -50_8",
+            "-10, -5, 50_8"
+    })
+    public void testMult(String val1, String val2, String expected) {
+        OctalNumber ns1 = new OctalNumber(val1);
+        OctalNumber ns2 = new OctalNumber(val2);
         ns1.mult(ns2);
-        assertEquals("50_8", ns1.toString());
-    }
-
-    @Test
-    public void testMultNegative() {
-        OctalNumber ns1 = new OctalNumber("10");
-        OctalNumber ns2 = new OctalNumber("-5");
-        ns1.mult(ns2);
-        assertEquals("-50_8", ns1.toString());
-    }
-
-    @Test
-    public void testMultMixed() {
-        OctalNumber ns1 = new OctalNumber("-10");
-        OctalNumber ns2 = new OctalNumber("5");
-        ns1.mult(ns2);
-        assertEquals("-50_8", ns1.toString());
-    }
-
-    @Test
-    public void testMultBothNegative() {
-        OctalNumber ns1 = new OctalNumber("-10");
-        OctalNumber ns2 = new OctalNumber("-5");
-        ns1.mult(ns2);
-        assertEquals("50_8", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 
     @Test
@@ -172,54 +121,22 @@ public class OctalNumberOperationsTest {
         OctalNumber ns2 = new OctalNumber("20");
         ns1.divi(ns2);
         assertEquals("20_8", ns2.toString());
-        assertEquals("4_8", ns1.toString());
+        assertNotEquals("100_8", ns1.toString());
     }
 
-    @Test
-    public void testDivi() {
-        OctalNumber ns1 = new OctalNumber("100");
-        OctalNumber ns2 = new OctalNumber("20");
+    @ParameterizedTest
+    @CsvSource({
+            "100, 20, 4_8",
+            "11, 2, 4_8",
+            "11, -2, -4_8",
+            "-11, 2, -4_8",
+            "-11, -2, 4_8",
+            "-11, 20, 0_8"
+    })
+    public void testDivi(String val1, String val2, String expected) {
+        OctalNumber ns1 = new OctalNumber(val1);
+        OctalNumber ns2 = new OctalNumber(val2);
         ns1.divi(ns2);
-        assertEquals("4_8", ns1.toString());
-    }
-
-    @Test
-    public void testDiviRemainder() {
-        OctalNumber ns1 = new OctalNumber("11");
-        OctalNumber ns2 = new OctalNumber("2");
-        ns1.divi(ns2);
-        assertEquals("4_8", ns1.toString());
-    }
-
-    @Test
-    public void testDiviNegative() {
-        OctalNumber ns1 = new OctalNumber("11");
-        OctalNumber ns2 = new OctalNumber("-2");
-        ns1.divi(ns2);
-        assertEquals("-4_8", ns1.toString());
-    }
-
-    @Test
-    public void testDiviMixed() {
-        OctalNumber ns1 = new OctalNumber("-11");
-        OctalNumber ns2 = new OctalNumber("2");
-        ns1.divi(ns2);
-        assertEquals("-4_8", ns1.toString());
-    }
-
-    @Test
-    public void testDiviBothNegative() {
-        OctalNumber ns1 = new OctalNumber("-11");
-        OctalNumber ns2 = new OctalNumber("-2");
-        ns1.divi(ns2);
-        assertEquals("4_8", ns1.toString());
-    }
-
-    @Test
-    public void testDiviSmallDivisor() {
-        OctalNumber ns1 = new OctalNumber("-11");
-        OctalNumber ns2 = new OctalNumber("20");
-        ns1.divi(ns2);
-        assertEquals("0_8", ns1.toString());
+        assertEquals(expected, ns1.toString());
     }
 }
