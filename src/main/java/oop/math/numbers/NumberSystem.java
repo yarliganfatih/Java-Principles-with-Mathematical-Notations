@@ -177,17 +177,33 @@ public class NumberSystem {
 
         int carry = 0;
         for (int i = 0; i < max; i++) {
-            //if(i == max - 1 && carry == -1) break;
             int sum = carry;
             sum += this.getSign() * digitList1.get(i);
             sum += other.getSign() * digitList2.get(i);
-            if (sum < 0) {
-                sum += this.getRadix();
-                carry = -1; // borrow
-            } else {
-                carry = sum / this.getRadix(); // 1 or 0
+
+            int remainder = sum % this.getRadix();
+            int quotient = sum / this.getRadix();
+            if (remainder < 0) {
+                remainder += this.getRadix();
+                quotient -= 1;
             }
-            digitList.add(Math.abs(sum % this.getRadix()));
+            digitList.add(remainder);
+            carry = quotient;
+        }
+
+        if (carry < 0) {
+            int borrow = 0;
+            for (int i = 0; i < digitList.size(); i++) {
+                int val = digitList.get(i);
+                int newVal = 0 - val - borrow;
+                if (newVal < 0) {
+                    newVal += this.getRadix();
+                    borrow = 1;
+                } else {
+                    borrow = 0;
+                }
+                digitList.set(i, newVal);
+            }
         }
         this.setSign(carry); // if carry==0 then sign is positive
         Collections.reverse(digitList);
